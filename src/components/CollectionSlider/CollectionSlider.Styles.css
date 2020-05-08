@@ -1,0 +1,35 @@
+/* .slider__inner {
+    height: 165px;
+} */
+
+/** To do: Avoid this*/
+.slick-list {
+    height: 225px;
+}
+
+.slick-list {
+    overflow: unset;
+}
+
+.slick-slide {
+    transition: transform .3s ease .1s,-webkit-transform .3s ease .1s;
+}
+.slick-slide:hover {
+   transform: scale(1.5);
+}
+
+.slick-slide:hover .showmovieinfo-on-hover {
+    transition: opacity .62s,1s ease;
+    opacity: 1;
+    visibility: visible;
+}
+.slick-slide:hover .blurimg-on-hover {
+    opacity: 0.9;
+}
+:not(.slick-active) + .slick-active {
+    transform-origin: left;
+}
+/* .slick-slide:hover img { */
+    /* transition: opacity .62s,1s ease;
+    opacity: .5; */
+/* } */

@@ -1,25 +1,51 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Home from "./pages/Home";
+import Genre from "./pages/Genre";
+
+import "bootstrap/dist/css/bootstrap.min.css";
+import GlobalStyle from "./Global.Styles";
+import { Main, MainView } from "./App.Styles";
+
+import Navbar from "./components/Navbar";
 
 function App() {
+  const pages = [
+    {
+      route: "/",
+      component: Home,
+    },
+    {
+      route: "/:type",
+      component: Home,
+    },
+    {
+      route: "/:type/genre/:id",
+      component: Genre,
+    },
+  ];
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="App">
+        <GlobalStyle />
+        <div>
+          <div>
+            <Main>
+              <Navbar />
+              <MainView>
+                <Switch>
+                  {pages.map((page, index) => (
+                    <Route key={index} exact path={page.route}>
+                      <page.component />
+                    </Route>
+                  ))}
+                </Switch>
+              </MainView>
+            </Main>
+          </div>
+        </div>
+      </div>
+    </Router>
   );
 }
 
