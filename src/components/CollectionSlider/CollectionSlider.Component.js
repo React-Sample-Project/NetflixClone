@@ -6,18 +6,25 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./CollectionSlider.Styles.css";
 
-function CollectionSlider({ items, doNotAddControls }) {
+function CollectionSlider({
+  items,
+  isLoading,
+  doNotAddControls,
+  length = 6,
+  className,
+}) {
+  const controls = !isLoading && !doNotAddControls;
   const settings = {
-    dots: !doNotAddControls,
-    arrows: !doNotAddControls,
+    dots: controls,
+    arrows: controls,
     infinite: true,
     speed: 500,
     adaptiveHeight: false,
     lazyLoad: true,
-    slidesToShow: 6,
-    slidesToScroll: 6,
+    slidesToShow: length,
+    slidesToScroll: length,
     /** To do: It is not working: Purpose was to change the height */
-    className: "slider__inner",
+    className: `slider__inner ${className}`,
     appendDots: (dots) => (
       <ul
         style={{
@@ -35,17 +42,27 @@ function CollectionSlider({ items, doNotAddControls }) {
     nextArrow: <SliderArrow />,
     prevArrow: <SliderArrow isLeft={true} />,
   };
-  const slides = items.map(
-    ({ backdrop_path, poster_path, original_title, id, ...otherProps }) => (
-      <CollectionSlide
-        image={poster_path}
-        title={original_title}
-        key={poster_path}
-        id={id}
-        {...otherProps}
-      ></CollectionSlide>
-    )
-  );
+  let slides;
+  if (isLoading) {
+    slides = Array(6)
+      .fill(0)
+      .map((val, index) => (
+        <CollectionSlide key={index} isLoading={isLoading} />
+      ));
+  } else {
+    slides = items.map(
+      ({ backdrop_path, poster_path, original_title, id, ...otherProps }) => (
+        <CollectionSlide
+          image={poster_path}
+          title={original_title}
+          key={poster_path}
+          id={id}
+          {...otherProps}
+        ></CollectionSlide>
+      )
+    );
+  }
+
   return <Slider {...settings}>{slides}</Slider>;
 }
 

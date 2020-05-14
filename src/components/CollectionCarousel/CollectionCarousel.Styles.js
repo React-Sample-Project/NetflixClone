@@ -10,18 +10,20 @@ export const CarouselTitleCard = styled.div`
 
 export const CardHeading = styled.h2`
   line-height: 1.3;
-  margin: 0;
+  background-color: ${({ isLoading }) =>
+    isLoading ? "#1a1a1a" : "transparent"};
+  min-width: 6em;
+  font-size: 1.4vw;
+  color: #e5e5e5;
+  margin: 0 4% 0.5em 4%;
+  font-weight: bold;
+  margin-left: 60px;
+  display: inline-block;
 `;
 
 export const CardTitle = styled(Link)`
-  font-size: 1.4vw;
-  color: #e5e5e5;
-  font-weight: bold;
   text-decoration: none;
   line-height: 1.25vw;
-  margin-left: 60px;
-  display: inline-block;
-  min-width: 6em;
 `;
 
 export const CarouselContainer = styled.div`

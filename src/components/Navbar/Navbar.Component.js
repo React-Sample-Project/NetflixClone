@@ -2,7 +2,10 @@ import React, { useState } from "react";
 import Logo from "../../assets/netflixLogo.png";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBell, faSearch } from "@fortawesome/free-solid-svg-icons";
+import { faBell } from "@fortawesome/free-solid-svg-icons";
+
+import SearchBox from "../SearchBox";
+
 import useWindowScrollPosition from "@rehooks/window-scroll-position";
 import {
   NavContainer,
@@ -15,10 +18,8 @@ import {
   LeftNavItem,
   RightNav,
   RightNavItem,
-  SearchBox,
   NavIcon,
 } from "./Navbar.Styles.js";
-// import "./Navbar.Styles.css";
 
 function Navbar() {
   const scrollOptions = {
@@ -60,20 +61,20 @@ function Navbar() {
               <Link to="/latest">Latest</Link>
             </LeftNavItem>
             <LeftNavItem>
-              <Link to="/mylist">My List</Link>
+              <Link to="/my-list">My List</Link>
             </LeftNavItem>
           </LeftNav>
           <RightNav>
             <RightNavItem>
-              <SearchBox>
-                <NavIcon>
-                  <FontAwesomeIcon icon={faSearch} />
-                </NavIcon>
-              </SearchBox>
+              <SearchBox />
             </RightNavItem>
             <RightNavItem>
               <NavIcon>
-                <FontAwesomeIcon icon={faBell} className="nav__icons" />
+                <FontAwesomeIcon
+                  icon={faBell}
+                  className="nav__icons"
+                  style={{ width: "auto" }}
+                />
               </NavIcon>
             </RightNavItem>
           </RightNav>

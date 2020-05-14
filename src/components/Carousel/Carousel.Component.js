@@ -3,10 +3,10 @@ import {
   Carousel as BootstrapCarousel,
   CarouselItem,
   CarouselControl,
-  CarouselCaption,
 } from "reactstrap";
 
 import "./Carousel.Styles.css";
+import Image from "../Image/Image.Component";
 
 function Carousel({ items }) {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -26,9 +26,8 @@ function Carousel({ items }) {
   const slides = items.map((item) => {
     return (
       <CarouselItem key={item.poster_path} className="another">
-        <img
-          src={`${process.env.REACT_APP_IMAGE_BASE_URL}${item.backdrop_path}`}
-          // src="https://image.tmdb.org/t/p/w500/eZm0fWJtVftiqs5kKOOzke8nJIR.jpg"
+        <Image
+          src={item.backdrop_path}
           alt={item.original_title}
           className="image"
         />

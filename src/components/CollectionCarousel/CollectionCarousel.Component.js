@@ -8,15 +8,21 @@ import {
 } from "./CollectionCarousel.Styles";
 import CollectionSlider from "../CollectionSlider/CollectionSlider.Component";
 
-function CollectionCarousel({ genreName, movie, tv, genreId }) {
+function CollectionCarousel({ isLoading, genreName, movie, tv, genreId }) {
   const match = useRouteMatch();
   return (
     <CarouselTitleCard>
-      <CardHeading>
-        <CardTitle to={`${match.url}/genre/${genreId}`}>{genreName}</CardTitle>
+      <CardHeading isLoading={isLoading}>
+        {isLoading ? (
+          "\u00A0"
+        ) : (
+          <CardTitle to={`${match.url}/genre/${genreId}`}>
+            {genreName}
+          </CardTitle>
+        )}
       </CardHeading>
       <CarouselContainer>
-        <CollectionSlider items={movie || tv} />
+        <CollectionSlider isLoading={isLoading} items={movie || tv} />
       </CarouselContainer>
     </CarouselTitleCard>
   );

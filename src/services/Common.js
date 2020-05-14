@@ -1,16 +1,17 @@
 import API from "./API";
-export const fetchTrending = async () => {
+export const fetchTrending = async (type) => {
   const trendingResponse = await API({
-    url: "trending/all/day",
+    url: `trending/${type}/day`,
   });
   return trendingResponse.results;
 };
 
-export const fetchCollectionForGenre = async (genreId, type) => {
+export const fetchCollectionForGenre = async (genreId, type, page = 1) => {
   const movies = await API({
     url: `discover/${type}`,
     data: {
       with_genres: genreId,
+      page,
     },
   });
   return movies.results;
@@ -34,5 +35,17 @@ export const fetchCollectionsOfGenres = async (genres, type) => {
       };
     });
     return await Promise.all(promises);
+  }
+};
+
+export const searchCollection = async (query) => {
+  if (query) {
+    const collection = await API({
+      data: {
+        query,
+      },
+      url: "search/multi",
+    });
+    return collection.results;
   }
 };

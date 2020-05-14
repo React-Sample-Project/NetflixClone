@@ -97,11 +97,6 @@ export const RightNavItem = styled.div`
   margin-right: 20px;
 `;
 
-export const SearchBox = styled.div`
-  display: inline-block;
-  vertical-align: middle;
-`;
-
 export const NavIcon = styled.div`
   vertical-align: middle;
   font-size: 1.3em;
