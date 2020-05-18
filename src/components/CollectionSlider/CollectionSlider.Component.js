@@ -44,6 +44,7 @@ function CollectionSlider({
   };
   let slides;
   if (isLoading) {
+    console.log("Loading data");
     slides = Array(6)
       .fill(0)
       .map((val, index) => (

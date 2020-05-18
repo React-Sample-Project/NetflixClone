@@ -21,6 +21,8 @@ function SearchInput({
         onFocus={onFocus}
         onBlur={onBlur}
         value={value}
+        autoFocus={true}
+        placeholder="Search movies"
         onChange={onChange}
         style={focused ? { opacity: 1, transitionDuration: "300ms" } : {}}
       />

@@ -21,7 +21,6 @@ const useInfiniteScroll = ({ array, sliceLength, elementRef, type }) => {
   useEffect(() => {
     if (totalPages && currentPage < totalPages) {
       const startIndex = currentPage * sliceLength;
-      console.log(currentPage, array);
       setSlicedArray(array.slice(startIndex, startIndex + sliceLength));
     }
   }, [currentPage, totalPages, array, sliceLength]);

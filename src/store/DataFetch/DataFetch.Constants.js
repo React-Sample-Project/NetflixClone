@@ -1,0 +1,9 @@
+const DataFetchConstants = {
+  FETCH_INIT: "FETCH_INIT",
+  FETCH_SUCCESS: "FETCH_SUCCESS",
+  FETCH_ERROR: "FETCH_ERROR",
+  INCREMENT_CURRENT_PAGE: "INCREMENT_CURRENT_PAGE",
+  RESET_STATE: "RESET_STATE",
+};
+
+export default DataFetchConstants;

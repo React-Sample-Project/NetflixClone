@@ -1,4 +1,7 @@
 import API from "./API";
+import axios from "axios";
+
+let source;
 export const fetchTrending = async (type) => {
   const trendingResponse = await API({
     url: `trending/${type}/day`,
@@ -14,7 +17,7 @@ export const fetchCollectionForGenre = async (genreId, type, page = 1) => {
       page,
     },
   });
-  return movies.results;
+  return getResponse(movies);
 };
 
 export const fetchGenres = async (type) => {
@@ -27,25 +30,37 @@ export const fetchGenres = async (type) => {
 export const fetchCollectionsOfGenres = async (genres, type) => {
   if (genres) {
     const promises = genres.map(async ({ id, name }) => {
-      const collection = await fetchCollectionForGenre(id, type);
+      const { results } = await fetchCollectionForGenre(id, type);
       return {
         genreName: name,
         genreId: id,
-        [type]: collection,
+        [type]: results,
       };
     });
     return await Promise.all(promises);
   }
 };
 
-export const searchCollection = async (query) => {
-  if (query) {
+export const getResponse = ({ results, total_pages }) => ({
+  results: results,
+  totalPages: total_pages,
+});
+
+export const searchCollection = async (query, page = 1) => {
+  if (source) {
+    source.cancel();
+  }
+  source = axios.CancelToken.source();
+  if (query || query === "") {
     const collection = await API({
       data: {
         query,
+        page,
       },
-      url: "search/multi",
+      url: "search/movie",
+      cancelToken: source.token,
     });
-    return collection.results;
+    console.log(collection);
+    return getResponse(collection);
   }
 };

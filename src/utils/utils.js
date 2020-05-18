@@ -19,9 +19,11 @@ export const chunkArrays = (array, chunkLength) => {
   const arrayLength = array.length;
   let result = [];
   const currentLength = 0;
+  let actualChunkLength = Math.min(array.length, chunkLength);
   for (let i = currentLength; i < arrayLength; i += chunkLength) {
-    result.push(array.slice(i, i + chunkLength));
+    result.push(array.slice(i, i + actualChunkLength));
   }
+  // console.log(result);
   return result;
 };
 

@@ -1,53 +1,54 @@
 import React, { useEffect, useState, useRef } from "react";
 import CollectionSlider from "../CollectionSlider/CollectionSlider.Component";
 import useScroll from "../../hooks/useScroll";
+import useFetch from "../../hooks/useFetch";
+
 import { chunkArrays, isBottom } from "../../utils/utils";
 import "./Collection.Styles.css";
+import DataFetchConstants from "../../store/DataFetch/DataFetch.Constants";
 
 function Collection({ fetchMethod, args }) {
-  const [collection, setCollection] = useState([]);
   const [slicedCollection, setSlicedCollection] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
   const rootRef = useRef(null);
   //To do: for responsiveness
   const length = 6;
   //Math.ceil(document.documentElement.clientWidth / 318)
-
+  const [
+    { data: collection, currentPage, totalPages, isLoading },
+    dispatch,
+  ] = useFetch(fetchMethod, null, args, {
+    paging: true,
+  });
+  console.log(isLoading);
   useScroll(() => {
-    if (isBottom(rootRef.current)) {
-      setCurrentPage((currentPageVal) => currentPageVal + 1);
+    if (isBottom(rootRef.current) && currentPage <= totalPages) {
+      dispatch({ type: DataFetchConstants.INCREMENT_CURRENT_PAGE });
     }
   });
-  useEffect(() => {
-    setCollection([]);
-  }, []);
-  useEffect(() => {
-    let didCancel = false;
-    const fetchCollection = async function () {
-      const newCollection = await fetchMethod(...args, currentPage);
-      console.log(newCollection, ...args);
-      if (!didCancel) {
-        setCollection((collection) =>
-          collection.length
-            ? [...collection, ...newCollection]
-            : [...newCollection]
-        );
-      }
-    };
-    fetchCollection();
-    return () => (didCancel = true);
-  }, [...args, currentPage]);
 
   useEffect(() => {
-    const collectionLength = collection.length;
-    console.log(collectionLength);
-    if (collectionLength > 0) {
-      const mod = collectionLength % length;
-      let finalArray = collection;
-      if (mod !== 0) {
-        finalArray = collection.slice(0, collectionLength - mod);
+    dispatch({
+      type: DataFetchConstants.RESET_STATE,
+      payload: {
+        paging: true,
+        data: null,
+      },
+    });
+  }, [...args, dispatch]);
+
+  useEffect(() => {
+    if (collection) {
+      const collectionLength = collection.length;
+      if (collectionLength > 0) {
+        const mod = collectionLength % length;
+        let finalArray = collection;
+        if (mod !== 0 && mod !== 1) {
+          // !!!important To do: Fix this. Not working when there is only one page and for example if there are 11 elements. Then only first 6 is displayed and the rest is ignored.
+          finalArray = collection.slice(0, collectionLength - mod);
+        }
+        collectionLength && console.log("Loading data");
+        setSlicedCollection(chunkArrays(finalArray, length));
       }
-      collectionLength && setSlicedCollection(chunkArrays(finalArray, length));
     }
   }, [collection]);
   return (
@@ -56,8 +57,9 @@ function Collection({ fetchMethod, args }) {
         <CollectionSlider
           className="genre-customization"
           items={collection}
+          isLoading={isLoading}
           key={collection[0].id}
-          length={length}
+          length={Math.min(length, collection.length)}
           doNotAddControls={true}
         />
       ))}

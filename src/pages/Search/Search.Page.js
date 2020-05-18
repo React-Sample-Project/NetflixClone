@@ -7,15 +7,15 @@ import Collection from "../../components/Collection/Collection.Component";
 
 function Search() {
   const query = useQuery();
-  const [searchQuery, setSearchQuery] = useState("");
-  const debouncedSearchTerm = useDebounce(query.get("q"), 300);
+  const [searchQuery, setSearchQuery] = useState(null);
+  const debouncedSearchTerm = useDebounce(query.get("q"), 1000);
   useEffect(() => {
     if (debouncedSearchTerm) {
       setSearchQuery(debouncedSearchTerm);
     }
   }, [debouncedSearchTerm]);
   return (
-    searchQuery && (
+    searchQuery !== null && (
       <Collection fetchMethod={searchCollection} args={[searchQuery]} />
     )
   );

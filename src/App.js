@@ -11,6 +11,7 @@ import { Main, MainView } from "./App.Styles";
 
 import Navbar from "./components/Navbar";
 import ScrollToTop from "./components/ScrollToTop/ScrollToTop.Component";
+import NotFound from "./pages/NotFound/NotFound.Component";
 
 function App() {
   const pages = [
@@ -27,12 +28,16 @@ function App() {
       component: Search,
     },
     {
-      route: "/:type",
+      route: "/:type(tv|movie)?",
       component: Home,
     },
     {
-      route: "/:type/genre/:id",
+      route: "/:type(tv|movie)?/genre/:id",
       component: Genre,
+    },
+    {
+      route: "*",
+      component: NotFound,
     },
   ];
   return (

@@ -2,11 +2,11 @@ import axios from "axios";
 
 axios.defaults.baseURL = "https://api.themoviedb.org/3/";
 axios.defaults.headers.common["Content-Type"] = "application/json";
-
 const API = async ({
   url,
   method = "GET",
-  headers,
+  headers = {},
+  cancelToken,
   data: requestParams,
   onSuccess,
   onFailure,
@@ -20,7 +20,8 @@ const API = async ({
     const { status, data, statusText } = await axios.request({
       url,
       method,
-      headers,
+      cancelToken,
+      // headers: { ...headers, "Cache-Control": "no-cache" },
       validateStatus: (status) => status < 500,
       [dataOrParams]: requestParams,
     });
@@ -30,6 +31,9 @@ const API = async ({
     }
     return data;
   } catch (e) {
+    if (axios.isCancel(e)) {
+      console.log("Request cancelled " + e.message);
+    }
     return e;
   }
 };
