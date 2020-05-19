@@ -26,12 +26,11 @@ const dataFetchReducer = (state, { type, payload }) => {
         ...state,
         isLoading: true,
         isError: false,
-        data:
-          paging && !isLoaderAdded
-            ? data
-              ? [...data, ...customLoader]
-              : [...customLoader]
-            : null,
+        data: !isLoaderAdded
+          ? paging && data
+            ? [...data, ...customLoader]
+            : [...customLoader]
+          : state.data,
       };
     case DataFetchConstants.FETCH_SUCCESS:
       newCollection = removeLoadingData(data);

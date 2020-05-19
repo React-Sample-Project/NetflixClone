@@ -4,6 +4,7 @@ import CollectionSlide from "../CollectionSlide/CollectionSlide.Component";
 import SliderArrow from "../SliderArrow/SliderArrow.Component";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { getNumArray } from "../../utils/utils";
 import "./CollectionSlider.Styles.css";
 
 function CollectionSlider({
@@ -42,28 +43,33 @@ function CollectionSlider({
     nextArrow: <SliderArrow />,
     prevArrow: <SliderArrow isLeft={true} />,
   };
-  let slides;
+  let slides = [];
   if (isLoading) {
-    console.log("Loading data");
-    slides = Array(6)
-      .fill(0)
-      .map((val, index) => (
-        <CollectionSlide key={index} isLoading={isLoading} />
-      ));
-  } else {
-    slides = items.map(
+    slides = getNumArray().map((val) => (
+      <CollectionSlide key={val} isLoading={isLoading} />
+    ));
+  } else if (items) {
+    let finalItems = [...items];
+    if (finalItems.length < length) {
+      finalItems = [
+        ...finalItems,
+        ...getNumArray(length - finalItems.length).map((val) => ({
+          id: val,
+        })),
+      ];
+    }
+    slides = finalItems.map(
       ({ backdrop_path, poster_path, original_title, id, ...otherProps }) => (
         <CollectionSlide
           image={poster_path}
           title={original_title}
-          key={poster_path}
+          key={poster_path || id}
           id={id}
           {...otherProps}
         ></CollectionSlide>
       )
     );
   }
-
   return <Slider {...settings}>{slides}</Slider>;
 }
 

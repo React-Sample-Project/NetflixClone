@@ -1,11 +1,10 @@
 import React from "react";
+import { getNumArray } from "../../utils/utils";
 import CollectionCarousel from "../CollectionCarousel/CollectionCarousel.Component";
 
 function LoadingSkeleton() {
-  console.log("I am called");
-  const array = new Array(3).fill(0);
-  return array.map((val, index) => (
-    <CollectionCarousel key={index} isLoading={true} />
+  return getNumArray(3).map((val) => (
+    <CollectionCarousel key={val} isLoading={true} />
   ));
 }
 

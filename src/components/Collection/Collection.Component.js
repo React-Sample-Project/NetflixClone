@@ -13,13 +13,14 @@ function Collection({ fetchMethod, args }) {
   //To do: for responsiveness
   const length = 6;
   //Math.ceil(document.documentElement.clientWidth / 318)
-  const [
-    { data: collection, currentPage, totalPages, isLoading },
-    dispatch,
-  ] = useFetch(fetchMethod, null, args, {
-    paging: true,
-  });
-  console.log(isLoading);
+  const [{ data: collection, currentPage, totalPages }, dispatch] = useFetch(
+    fetchMethod,
+    null,
+    args,
+    {
+      paging: true,
+    }
+  );
   useScroll(() => {
     if (isBottom(rootRef.current) && currentPage <= totalPages) {
       dispatch({ type: DataFetchConstants.INCREMENT_CURRENT_PAGE });
@@ -34,20 +35,19 @@ function Collection({ fetchMethod, args }) {
         data: null,
       },
     });
-  }, [...args, dispatch]);
+  }, [dispatch, args]);
 
   useEffect(() => {
     if (collection) {
       const collectionLength = collection.length;
       if (collectionLength > 0) {
-        const mod = collectionLength % length;
-        let finalArray = collection;
-        if (mod !== 0 && mod !== 1) {
-          // !!!important To do: Fix this. Not working when there is only one page and for example if there are 11 elements. Then only first 6 is displayed and the rest is ignored.
-          finalArray = collection.slice(0, collectionLength - mod);
-        }
-        collectionLength && console.log("Loading data");
-        setSlicedCollection(chunkArrays(finalArray, length));
+        //  const mod = collectionLength % length;
+        //let finalArray = collection;
+        // if (mod !== 0 && mod !== 1) {
+        // !!!important To do: Fix this. Not working when there is only one page and for example if there are 11 elements. Then only first 6 is displayed and the rest is ignored.
+        // finalArray = collection.slice(0, collectionLength - mod);
+        // }
+        setSlicedCollection(chunkArrays(collection, length));
       }
     }
   }, [collection]);
@@ -57,9 +57,9 @@ function Collection({ fetchMethod, args }) {
         <CollectionSlider
           className="genre-customization"
           items={collection}
-          isLoading={isLoading}
+          isLoading={collection[collection.length - 1].isLoading}
           key={collection[0].id}
-          length={Math.min(length, collection.length)}
+          // length={Math.min(length, collection.length)}
           doNotAddControls={true}
         />
       ))}

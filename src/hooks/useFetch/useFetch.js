@@ -51,7 +51,7 @@ function useFetch(asyncFn, initialData, deps, props) {
     return () => {
       didCancelRef.current = true;
     };
-  }, [callback, ...deps]);
+  }, [callback, deps]);
   return [state, dispatch];
 }
 

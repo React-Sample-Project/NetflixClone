@@ -6,7 +6,7 @@ export const generateLoadingItems = () => [
 ];
 
 export const isBottom = (element) =>
-  element && element.getBoundingClientRect().bottom <= window.innerHeight + 40;
+  element && element.getBoundingClientRect().bottom <= window.innerHeight + 100;
 
 export const isContentOverflown = ({
   clientWidth,
@@ -23,7 +23,6 @@ export const chunkArrays = (array, chunkLength) => {
   for (let i = currentLength; i < arrayLength; i += chunkLength) {
     result.push(array.slice(i, i + actualChunkLength));
   }
-  // console.log(result);
   return result;
 };
 
@@ -38,3 +37,5 @@ export const debounce = (func, wait) => {
     }, wait);
   };
 };
+
+export const getNumArray = (length = 6) => [...Array(length).keys()];

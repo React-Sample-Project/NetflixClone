@@ -31,6 +31,11 @@
 :not(.slick-active) + .slick-active {
     transform-origin: left;
 }
+
+.slick-track {
+    margin-left: 0;
+    margin-right: 0;
+}
 /* .slick-slide:hover img { */
     /* transition: opacity .62s,1s ease;
     opacity: .5; */
