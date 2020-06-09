@@ -2,7 +2,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 
 import Collection from "../../components/Collection/Collection.Component";
-import { fetchCollectionForGenre } from "../../services/Common";
+import { fetchCollectionForGenre } from "../../services/Data";
 
 function Genre() {
   const { type, id } = useParams();

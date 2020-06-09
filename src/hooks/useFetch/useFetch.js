@@ -12,8 +12,10 @@ function useFetch(asyncFn, initialData, deps, props) {
     paging,
     data: initialData,
   };
+
   const [state, dispatch] = useReducer(dataFetchReducer, initialState);
   const didCancelRef = useRef(false);
+
   const callback = useCallback(
     async (...args) => {
       const { FETCH_INIT, FETCH_SUCCESS, FETCH_ERROR } = DataFetchConstants;

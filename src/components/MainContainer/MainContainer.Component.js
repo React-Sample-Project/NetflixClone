@@ -5,7 +5,7 @@ import {
   fetchTrending,
   fetchCollectionsOfGenres,
   fetchGenres,
-} from "../../services/Common.js";
+} from "../../services/Data.js";
 
 import {
   Main,

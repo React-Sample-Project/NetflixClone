@@ -12,13 +12,11 @@ import { Main, MainView } from "./App.Styles";
 import Navbar from "./components/Navbar";
 import ScrollToTop from "./components/ScrollToTop/ScrollToTop.Component";
 import NotFound from "./pages/NotFound/NotFound.Component";
+import Auth from "./pages/Auth/Auth.Page";
+import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute.Component";
 
 function App() {
   const pages = [
-    {
-      route: "/",
-      component: Home,
-    },
     {
       route: "/my-list",
       component: MyList,
@@ -51,10 +49,15 @@ function App() {
               <Navbar />
               <MainView>
                 <Switch>
+                  <Route exact path="/">
+                    <Auth />
+                  </Route>
                   {pages.map((page, index) => (
-                    <Route key={index} exact path={page.route}>
-                      <page.component />
-                    </Route>
+                    <ProtectedRoute key={index} exact path={page.route}>
+                      <Route>
+                        <page.component />
+                      </Route>
+                    </ProtectedRoute>
                   ))}
                 </Switch>
               </MainView>

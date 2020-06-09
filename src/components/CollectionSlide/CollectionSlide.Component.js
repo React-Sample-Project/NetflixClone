@@ -4,7 +4,6 @@ import SlideInfo from "../SlideInfo";
 import LoadingSlide from "../LoadingSlide/LoadingSlide.Component";
 
 function CollectionSlide({ isLoading, title, ...otherProps }) {
-  console.log(isLoading);
   const children = isLoading ? (
     <LoadingSlide />
   ) : (

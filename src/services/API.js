@@ -1,6 +1,6 @@
 import axios from "axios";
 
-axios.defaults.baseURL = "https://api.themoviedb.org/3/";
+axios.defaults.baseURL = "https://api.themoviedb.org/3";
 axios.defaults.headers.common["Content-Type"] = "application/json";
 const API = async ({
   url,
@@ -14,13 +14,13 @@ const API = async ({
   const dataOrParams = ["GET", "DELETE"].includes(method) ? "params" : "data";
   requestParams = {
     ...requestParams,
-    api_key: process.env.REACT_APP_API_KEY,
   };
   try {
     const { status, data, statusText } = await axios.request({
-      url,
+      url: `${url}?api_key=${process.env.REACT_APP_API_KEY}`,
       method,
       cancelToken,
+      headers,
       // headers: { ...headers, "Cache-Control": "no-cache" },
       validateStatus: (status) => status < 500,
       [dataOrParams]: requestParams,
@@ -31,9 +31,9 @@ const API = async ({
     }
     return data;
   } catch (e) {
-    if (axios.isCancel(e)) {
-      console.log("Request cancelled " + e.message);
-    }
+    // if (axios.isCancel(e)) {
+    //   console.log("Request cancelled " + e.message);
+    // }
     return e;
   }
 };

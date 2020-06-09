@@ -19,10 +19,10 @@ function SearchBox() {
 
   useEffect(() => {
     if (!pathname.includes("search")) {
-      // setInputShown(false);
+      !inputFocused && setInputShown(false);
       setSearchValue("");
     }
-  }, [pathname]);
+  }, [pathname, inputFocused]);
 
   const onInputChange = ({ target: { value } }) => {
     if (value.length === 1 && !pathRef.current) {

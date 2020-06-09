@@ -19,7 +19,7 @@ const dataFetchReducer = (state, { type, payload }) => {
   switch (type) {
     case DataFetchConstants.FETCH_INIT:
       let isLoaderAdded = false;
-      if (data && data[data.length - 1].isLoading) {
+      if (data && data.length && data[data.length - 1].isLoading) {
         isLoaderAdded = true;
       }
       return {
