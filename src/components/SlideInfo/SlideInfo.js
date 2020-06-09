@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import SeeMore from "../SeeMore/SeeMore.Component";
+import SeeMore from "../SeeMore/SeeMore";
 import { isContentOverflown } from "../../utils/utils";
 
 import { MovieInfoContainer, MovieTitle, MovieInfo } from "./SlideInfo.Styles";
-import Image from "../Image/Image.Component";
+import Image from "../Image/Image";
 
 function SlideInfo({ title, overview, image }) {
   const [expanded, setExpanded] = useState(false);

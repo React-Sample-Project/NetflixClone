@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import CollectionSlider from "../CollectionSlider/CollectionSlider.Component";
+import CollectionSlider from "../CollectionSlider/CollectionSlider";
 import useScroll from "../../hooks/useScroll";
 import useFetch from "../../hooks/useFetch";
 

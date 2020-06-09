@@ -3,8 +3,8 @@ import useQuery from "../../hooks/useQuery";
 import useDebounce from "../../hooks/useDebounce";
 
 import { searchCollection } from "../../services/Data";
-import Collection from "../../components/Collection/Collection.Component";
-import NoResults from "../../components/ NoResults/NoResults.Component";
+import Collection from "../../components/Collection/Collection";
+import NoResults from "../../components/NoResults/NoResults";
 
 function Search() {
   const query = useQuery();

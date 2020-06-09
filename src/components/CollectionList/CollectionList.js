@@ -1,5 +1,5 @@
 import React from "react";
-import CollectionCarousel from "../CollectionCarousel/CollectionCarousel.Component";
+import CollectionCarousel from "../CollectionCarousel/CollectionCarousel";
 
 function CollectionList({ items }) {
   return items.map((item) => (

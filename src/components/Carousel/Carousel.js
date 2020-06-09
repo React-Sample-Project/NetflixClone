@@ -6,7 +6,7 @@ import {
 } from "reactstrap";
 
 import "./Carousel.Styles.css";
-import Image from "../Image/Image.Component";
+import Image from "../Image/Image";
 
 function Carousel({ items }) {
   const [activeIndex, setActiveIndex] = useState(0);

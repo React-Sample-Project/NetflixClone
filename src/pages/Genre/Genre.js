@@ -1,7 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 
-import Collection from "../../components/Collection/Collection.Component";
+import Collection from "../../components/Collection/Collection";
 import { fetchCollectionForGenre } from "../../services/Data";
 
 function Genre() {

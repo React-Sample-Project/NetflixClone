@@ -6,7 +6,7 @@ import {
   CardTitle,
   CarouselContainer,
 } from "./CollectionCarousel.Styles";
-import CollectionSlider from "../CollectionSlider/CollectionSlider.Component";
+import CollectionSlider from "../CollectionSlider/CollectionSlider";
 
 function CollectionCarousel({ isLoading, genreName, movie, tv, genreId }) {
   const match = useRouteMatch();

@@ -1,19 +1,19 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Home from "./pages/Home/Home.Page";
-import Genre from "./pages/Genre/Genre.Page";
-import MyList from "./pages/MyList/MyList.Page";
-import Search from "./pages/Search/Search.Page";
+import Home from "./pages/Home/Home";
+import Genre from "./pages/Genre/Genre";
+import MyList from "./pages/MyList/MyList";
+import Search from "./pages/Search/Search";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import GlobalStyle from "./Global.Styles";
 import { Main, MainView } from "./App.Styles";
 
 import Navbar from "./components/Navbar";
-import ScrollToTop from "./components/ScrollToTop/ScrollToTop.Component";
-import NotFound from "./pages/NotFound/NotFound.Component";
-import Auth from "./pages/Auth/Auth.Page";
-import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute.Component";
+import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
+import NotFound from "./pages/NotFound/NotFound";
+import Auth from "./pages/Auth/Auth";
+import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 
 function App() {
   const pages = [
