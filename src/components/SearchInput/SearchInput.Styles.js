@@ -1,4 +1,5 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
+import Input from "../Input/Input";
 
 export const SearchInput = styled.div`
   display: flex;
@@ -7,7 +8,7 @@ export const SearchInput = styled.div`
   border: solid 1px rgba(255, 255, 255, 0.85);
 `;
 
-export const InputCSS = css`
+export const SearchBox = styled(Input)`
   color: #fff;
   display: inline-block;
   background: transparent;

@@ -1,7 +1,8 @@
 import React from "react";
+import { ButtonContainer } from "./Button.Styles";
 
 function Button({ children, ...otherProps }) {
-  return <button {...otherProps}>{children}</button>;
+  return <ButtonContainer {...otherProps}>{children}</ButtonContainer>;
 }
 
 export default Button;

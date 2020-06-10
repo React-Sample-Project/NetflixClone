@@ -7,7 +7,9 @@ const auth = {
       url: "/authentication/token/new",
     }),
 
-  isAuthenticated: () => !!localStorage.getItem("userSession"),
+  isAuthenticated: () =>
+    !!localStorage.getItem("userSession") ||
+    !!localStorage.getItem("guestSession"),
 
   authenticateUser: async ({ name, password }) => {
     let loginSuccess = auth.isAuthenticated();
@@ -38,6 +40,18 @@ const auth = {
     }
     return {
       success: loginSuccess,
+    };
+  },
+  createGuestSession: async () => {
+    const { success, guest_session_id } = await API({
+      url: "authentication/guest_session/new",
+    });
+    console.log(guest_session_id);
+    if (success) {
+      localStorage.setItem("guestSession", guest_session_id);
+    }
+    return {
+      success,
     };
   },
 };

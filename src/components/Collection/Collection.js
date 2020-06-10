@@ -3,7 +3,7 @@ import CollectionSlider from "../CollectionSlider/CollectionSlider";
 import useScroll from "../../hooks/useScroll";
 import useFetch from "../../hooks/useFetch";
 
-import { chunkArrays, isBottom } from "../../utils/utils";
+import { chunkArrays, isBottom } from "../../utils";
 import "./Collection.Styles.css";
 import DataFetchConstants from "../../store/DataFetch/DataFetch.Constants";
 

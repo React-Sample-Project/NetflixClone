@@ -43,27 +43,27 @@ function App() {
       <ScrollToTop />
       <div className="App">
         <GlobalStyle />
-        <div>
-          <div>
-            <Main>
-              <Navbar />
-              <MainView>
-                <Switch>
-                  <Route exact path="/">
-                    <Auth />
-                  </Route>
-                  {pages.map((page, index) => (
-                    <ProtectedRoute key={index} exact path={page.route}>
-                      <Route>
+        <Switch>
+          <Route exact path="/">
+            <Auth />
+          </Route>
+          {pages.map((page, index) => (
+            <ProtectedRoute key={index} exact path={page.route}>
+              <Route>
+                <div>
+                  <div>
+                    <Main>
+                      <Navbar />
+                      <MainView>
                         <page.component />
-                      </Route>
-                    </ProtectedRoute>
-                  ))}
-                </Switch>
-              </MainView>
-            </Main>
-          </div>
-        </div>
+                      </MainView>
+                    </Main>
+                  </div>
+                </div>
+              </Route>
+            </ProtectedRoute>
+          ))}
+        </Switch>
       </div>
     </Router>
   );

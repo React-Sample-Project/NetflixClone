@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import SeeMore from "../SeeMore/SeeMore";
-import { isContentOverflown } from "../../utils/utils";
+import { isContentOverflown } from "../../utils";
 
 import { MovieInfoContainer, MovieTitle, MovieInfo } from "./SlideInfo.Styles";
 import Image from "../Image/Image";

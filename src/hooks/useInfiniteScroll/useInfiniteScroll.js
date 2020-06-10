@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { isBottom } from "../../utils/utils";
+import { isBottom } from "../../utils";
 import useScroll from "../useScroll";
 
 const useInfiniteScroll = ({ array, sliceLength, elementRef, type }) => {

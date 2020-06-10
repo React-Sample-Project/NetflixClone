@@ -1,9 +1,16 @@
 import React, { useState } from "react";
-import Input from "../Input/Input";
-import Button from "../Button/Button";
 import auth from "../../services/Auth";
-import { SignInContainer } from "./SignIn.Styles";
+import {
+  SignInHeader,
+  SignInLabel,
+  InputWrapper,
+  SignInInput,
+  SignInButton,
+  SignInInner,
+  InputMainWrapper,
+} from "./SignIn.Styles";
 import { useHistory } from "react-router-dom";
+import Label from "../Label/Label";
 
 function SignIn() {
   const history = useHistory();
@@ -34,24 +41,47 @@ function SignIn() {
     }
   };
   return (
-    <SignInContainer>
-      <form onSubmit={signIn}>
-        <Input
-          placeholder="username"
-          name="username"
-          value={username}
-          onChange={onChange}
-        />
-        <Input
-          placeholder="password"
-          name="password"
-          type="password"
-          value={password}
-          onChange={onChange}
-        />
-        <Button type="submit">Sign In</Button>
+    <SignInInner>
+      <SignInHeader>Sign In</SignInHeader>
+      <form method="post" onSubmit={signIn}>
+        <InputMainWrapper>
+          <InputWrapper>
+            <Label>
+              <SignInInput
+                name="username"
+                value={username}
+                tabIndex="0"
+                id="userName"
+                autoComplete="email"
+                onChange={onChange}
+              />
+              <SignInLabel htmlFor="userName">
+                Email or phone number
+              </SignInLabel>
+            </Label>
+          </InputWrapper>
+        </InputMainWrapper>
+        <InputMainWrapper>
+          <InputWrapper>
+            <Label>
+              <SignInInput
+                name="password"
+                type="password"
+                id="password"
+                tabIndex="0"
+                autoComplete="password"
+                value={password}
+                onChange={onChange}
+              />
+              <SignInLabel htmlFor="password">Password</SignInLabel>
+            </Label>
+          </InputWrapper>
+        </InputMainWrapper>
+        <SignInButton type="submit" size="small" bgColor="#e50914" color="#fff">
+          Sign In
+        </SignInButton>
       </form>
-    </SignInContainer>
+    </SignInInner>
   );
 }
 

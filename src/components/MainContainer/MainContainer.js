@@ -20,7 +20,7 @@ import LoadingSkeleton from "../LoadingSkeleton";
 
 import useInfiniteScroll from "../../hooks/useInfiniteScroll";
 
-import { generateLoadingItems } from "../../utils/utils.js";
+import { generateLoadingItems } from "../../utils";
 
 import genreReducer, {
   genreInitialState,

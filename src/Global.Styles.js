@@ -25,6 +25,15 @@ a {
     color: #fff;
 }
 
+img {
+  border: 0
+}
+
+h1 {
+  margin: 0 0 10px 0;
+  padding: 0;
+}
+
 ${"" /* * {
     box-sizing: border-box;
 } */}

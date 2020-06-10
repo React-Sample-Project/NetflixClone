@@ -4,7 +4,7 @@ import CollectionSlide from "../CollectionSlide/CollectionSlide";
 import SliderArrow from "../SliderArrow/SliderArrow";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { getNumArray } from "../../utils/utils";
+import { getNumArray } from "../../utils";
 import "./CollectionSlider.Styles.css";
 
 function CollectionSlider({

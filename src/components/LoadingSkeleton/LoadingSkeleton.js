@@ -1,5 +1,5 @@
 import React from "react";
-import { getNumArray } from "../../utils/utils";
+import { getNumArray } from "../../utils";
 import CollectionCarousel from "../CollectionCarousel/CollectionCarousel";
 
 function LoadingSkeleton() {

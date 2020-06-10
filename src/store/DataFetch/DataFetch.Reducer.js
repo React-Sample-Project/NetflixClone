@@ -1,5 +1,5 @@
 import DataFetchConstants from "./DataFetch.Constants";
-import { generateLoadingItems } from "../../utils/utils";
+import { generateLoadingItems } from "../../utils";
 
 const removeLoadingData = (data) => {
   let newCollection = null;
