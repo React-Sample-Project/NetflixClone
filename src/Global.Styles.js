@@ -29,6 +29,17 @@ img {
   border: 0
 }
 
+button, input {
+  color: inherit;
+  font: inherit;
+  margin: 0;
+}
+
+button {
+  overflow: visible;
+  cursor: pointer;
+}
+
 h1 {
   margin: 0 0 10px 0;
   padding: 0;

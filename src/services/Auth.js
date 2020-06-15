@@ -11,31 +11,44 @@ const auth = {
     !!localStorage.getItem("userSession") ||
     !!localStorage.getItem("guestSession"),
 
-  authenticateUser: async ({ name, password }) => {
+  authenticateUser: async ({ username, password }) => {
     let loginSuccess = auth.isAuthenticated();
     if (!loginSuccess) {
       const { request_token } = await auth.getRequestToken();
+      let sessionStatus;
       if (request_token) {
-        const { success } = await API({
+        const {
+          success,
+          status_code: statusCode,
+          status_message: statusMessage,
+        } = await API({
           url: "authentication/token/validate_with_login",
           method: "POST",
           data: {
-            username: name,
+            username,
             password,
             request_token: request_token,
           },
         });
         if (success) {
-          const { session_id } = await API({
+          const { session_id, status_message } = await API({
             url: "authentication/session/new",
             method: "POST",
             data: {
               request_token: request_token,
             },
           });
-          localStorage.setItem("userSession", session_id);
-          loginSuccess = true;
+          sessionStatus = status_message;
+          if (session_id) {
+            loginSuccess = true;
+            localStorage.setItem("userSession", session_id);
+          }
         }
+        return {
+          success: loginSuccess,
+          statusCode,
+          statusMessage: statusMessage || sessionStatus,
+        };
       }
     }
     return {

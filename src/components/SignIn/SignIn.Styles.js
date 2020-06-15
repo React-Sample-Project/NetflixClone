@@ -17,6 +17,23 @@ export const SignInHeader = styled.h1`
   margin-bottom: 28px;
 `;
 
+export const SignInInput = styled(Input)`
+  background: #333;
+  border-radius: 4px;
+  border: 0;
+  color: #fff;
+  height: 50px;
+  line-height: 50px;
+  padding: 16px 20px 0;
+  font-size: 16px;
+  display: block;
+  width: 100%;
+  &:focus {
+    outline: none;
+    background: #454545;
+  }
+`;
+
 export const SignInLabel = styled(Label)`
   left: 20px;
   font-size: 16px;
@@ -25,6 +42,15 @@ export const SignInLabel = styled(Label)`
   color: #8c8c8c;
   transition: font 0.1s ease, top 0.1s ease, transform 0.1s ease;
   transform: translateY(-50%);
+  ${({ htmlFor }) => (htmlFor === "password" ? "flex-grow: 1;" : "")}
+  ${({ floatUp }) =>
+    floatUp &&
+    `
+      top: 4px;
+      font-size: 11px;
+      transform: translateY(0);
+      top: 7px;
+    `}
 `;
 
 export const SignInButton = styled(Button)`
@@ -37,23 +63,16 @@ export const SignInButton = styled(Button)`
   padding: 16px;
 `;
 
-export const SignInInput = styled(Input)`
-  background: #333;
-  border-radius: 4px;
-  border: 0;
-  color: #fff;
-  height: 50px;
-  line-height: 50px;
-  padding: 16px 20px 0;
-  font-size: 16px;
-  display: block;
-  width: 100%;
+export const PasswordLabel = styled(Label)`
+  flex-grow: 1;
 `;
 
 export const InputWrapper = styled.div`
   position: relative;
   border: 0;
   border-radius: 4px;
+  background: #454545;
+  ${({ isPassword }) => isPassword && "display:flex"}
 `;
 
 export const InputMainWrapper = styled.div`

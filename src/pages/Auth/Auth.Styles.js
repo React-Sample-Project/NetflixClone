@@ -84,7 +84,7 @@ export const AuthBodyWrapper = styled.div`
   flex-direction: column;
   padding: 60px 68px 40px;
   width: 100%;
-  background-color: black;
+  background-color: rgba(0, 0, 0, 0.75);
   margin: 0;
   margin-bottom: 90px;
 `;
