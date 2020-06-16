@@ -5,7 +5,6 @@ import Genre from "./pages/Genre/Genre";
 import MyList from "./pages/MyList/MyList";
 import Search from "./pages/Search/Search";
 
-import "bootstrap/dist/css/bootstrap.min.css";
 import GlobalStyle from "./Global.Styles";
 import { Main, MainView } from "./App.Styles";
 
@@ -41,7 +40,7 @@ function App() {
   return (
     <Router>
       <ScrollToTop />
-      <div className="App">
+      <>
         <GlobalStyle />
         <Switch>
           <Route exact path="/">
@@ -64,7 +63,7 @@ function App() {
             </ProtectedRoute>
           ))}
         </Switch>
-      </div>
+      </>
     </Router>
   );
 }

@@ -23,5 +23,5 @@ export const GuestIcon = styled(FontAwesomeIcon)`
 export const GuestText = styled.span`
   color: #737373;
   font-size: 13px;
-  font-weight: 500;
+  font-weight: bold;
 `;

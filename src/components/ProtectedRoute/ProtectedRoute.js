@@ -12,7 +12,6 @@ function ProtectedRoute({ children, ...rest }) {
     <Route
       {...rest}
       render={({ location }) => {
-        console.log(location, localStorage.getItem("userSession"));
         return auth.isAuthenticated() ? (
           children
         ) : (

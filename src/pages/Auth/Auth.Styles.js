@@ -86,5 +86,6 @@ export const AuthBodyWrapper = styled.div`
   width: 100%;
   background-color: rgba(0, 0, 0, 0.75);
   margin: 0;
+  box-sizing: border-box;
   margin-bottom: 90px;
 `;

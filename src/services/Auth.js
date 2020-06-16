@@ -59,7 +59,6 @@ const auth = {
     const { success, guest_session_id } = await API({
       url: "authentication/guest_session/new",
     });
-    console.log(guest_session_id);
     if (success) {
       localStorage.setItem("guestSession", guest_session_id);
     }

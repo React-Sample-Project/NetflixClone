@@ -4,13 +4,14 @@ import OtherAuth from "../../components/OtherAuth/OtherAuth";
 
 import Cover from "../../assets/cover.jpg";
 
+import "./Auth.Styles.css";
+
 import {
   AuthContainer,
   AuthBodyWrapper,
   AuthBody,
   AuthBackground,
   AuthHeader,
-  AuthMain,
   Logo,
   LogoLink,
 } from "./Auth.Styles";
@@ -21,26 +22,24 @@ function Auth() {
   return auth.isAuthenticated() ? (
     <Redirect to="/movie" />
   ) : (
-    <AuthMain>
-      <AuthContainer>
-        <AuthBackground>
-          <img src={Cover} alt="loginCover" />
-        </AuthBackground>
-        <AuthHeader>
-          <LogoLink to="/">
-            <Logo />
-          </LogoLink>
-        </AuthHeader>
-        <AuthBody>
-          <div>
-            <AuthBodyWrapper>
-              <SignIn />
-              <OtherAuth />
-            </AuthBodyWrapper>
-          </div>
-        </AuthBody>
-      </AuthContainer>
-    </AuthMain>
+    <AuthContainer>
+      <AuthBackground>
+        <img src={Cover} alt="loginCover" />
+      </AuthBackground>
+      <AuthHeader>
+        <LogoLink to="/">
+          <Logo />
+        </LogoLink>
+      </AuthHeader>
+      <AuthBody>
+        <div>
+          <AuthBodyWrapper>
+            <SignIn />
+            <OtherAuth />
+          </AuthBodyWrapper>
+        </div>
+      </AuthBody>
+    </AuthContainer>
   );
 }
 

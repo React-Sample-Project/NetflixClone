@@ -13,9 +13,9 @@ import {
   SignInInner,
   InputMainWrapper,
   PasswordLabel,
+  SignInLabelWrapper,
 } from "./SignIn.Styles";
 import { useHistory } from "react-router-dom";
-import Label from "../Label/Label";
 
 function SignIn() {
   const history = useHistory();
@@ -125,7 +125,7 @@ function SignIn() {
       <form method="post" onSubmit={signIn}>
         <InputMainWrapper>
           <InputWrapper>
-            <Label>
+            <SignInLabelWrapper>
               <SignInInput
                 name="username"
                 value={username}
@@ -142,7 +142,7 @@ function SignIn() {
               >
                 Email or phone number
               </SignInLabel>
-            </Label>
+            </SignInLabelWrapper>
           </InputWrapper>
           {usernameError && <InputError>{usernameError}</InputError>}
         </InputMainWrapper>

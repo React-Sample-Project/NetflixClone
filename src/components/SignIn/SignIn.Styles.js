@@ -28,6 +28,7 @@ export const SignInInput = styled(Input)`
   font-size: 16px;
   display: block;
   width: 100%;
+  box-sizing: border-box;
   &:focus {
     outline: none;
     background: #454545;
@@ -65,6 +66,10 @@ export const SignInButton = styled(Button)`
 
 export const PasswordLabel = styled(Label)`
   flex-grow: 1;
+`;
+
+export const SignInLabelWrapper = styled(Label)`
+  box-sizing: border-box;
 `;
 
 export const InputWrapper = styled.div`

@@ -60,7 +60,6 @@ export const searchCollection = async (query, page = 1) => {
       url: "search/movie",
       cancelToken: source.token,
     });
-    console.log(collection);
     return getResponse(collection);
   }
 };
