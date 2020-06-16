@@ -25,7 +25,7 @@ function CollectionSlider({
     slidesToShow: length,
     slidesToScroll: length,
     /** To do: It is not working: Purpose was to change the height */
-    className: `slider__inner ${className}`,
+    className: `slider__inner ${className || ""}`,
     appendDots: (dots) => (
       <ul
         style={{
@@ -59,10 +59,17 @@ function CollectionSlider({
       ];
     }
     slides = finalItems.map(
-      ({ backdrop_path, poster_path, original_title, id, ...otherProps }) => (
+      ({
+        backdrop_path,
+        poster_path,
+        original_title,
+        original_name,
+        id,
+        ...otherProps
+      }) => (
         <CollectionSlide
           image={poster_path}
-          title={original_title}
+          title={original_title || original_name}
           key={poster_path || id}
           id={id}
           {...otherProps}

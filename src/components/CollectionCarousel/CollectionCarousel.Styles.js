@@ -6,6 +6,7 @@ export const CarouselTitleCard = styled.div`
   position: relative;
   transition: transform 0.54s cubic-bezier(0.5, 0, 0.1, 1) 0s;
   z-index: 1;
+  box-sizing: border-box;
 `;
 
 export const CardHeading = styled.h2`

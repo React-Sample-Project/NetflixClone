@@ -1,16 +1,16 @@
 import React from "react";
-import { Main } from "./SlideArrow.Styles";
+import { ArrowMain } from "./SlideArrow.Styles";
 
 function SliderArrow({ className, style, onClick, children, isLeft }) {
   return (
-    <Main
+    <ArrowMain
       className={className}
       style={{ ...style }}
       onClick={onClick}
       isLeft={isLeft}
     >
       {children}
-    </Main>
+    </ArrowMain>
   );
 }
 

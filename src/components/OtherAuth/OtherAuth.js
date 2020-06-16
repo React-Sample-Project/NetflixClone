@@ -1,7 +1,12 @@
 import React from "react";
 import GuestAuth from "../GuestAuth/GuestAuth";
 
-import { OtherAuthContainer, SignUpContainer } from "./OtherAuth.Styles";
+import {
+  OtherAuthContainer,
+  SignUpContainer,
+  RecaptchaContainer,
+  DisclosureContainer,
+} from "./OtherAuth.Styles";
 
 function OtherAuth() {
   return (
@@ -11,6 +16,38 @@ function OtherAuth() {
         New to Movieflix?{" "}
         <a href="https://www.themoviedb.org/account/signup">Sign up now</a>
       </SignUpContainer>
+      <RecaptchaContainer style={{ display: "none" }}>
+        <p>
+          <span>
+            This page is protected by Google reCAPTCHA to ensure you're not a
+            bot.
+          </span>
+          &nbsp;
+          <button>Learn more.</button>
+        </p>
+        <DisclosureContainer style={{ display: "none" }}>
+          <span>
+            The information collected by Google reCAPTCHA is subject to the
+            Google{" "}
+            <a
+              href="https://policies.google.com/privacy"
+              data-uia="recaptcha-privacy-link"
+            >
+              Privacy Policy
+            </a>{" "}
+            and{" "}
+            <a
+              href="https://policies.google.com/terms"
+              data-uia="recaptcha-tos-link"
+            >
+              Terms of Service
+            </a>
+            , and is used for providing, maintaining, and improving the
+            reCAPTCHA service and for general security purposes (it is not used
+            for personalized advertising by Google).
+          </span>
+        </DisclosureContainer>
+      </RecaptchaContainer>
     </OtherAuthContainer>
   );
 }

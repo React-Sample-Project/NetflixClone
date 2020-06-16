@@ -1,60 +1,25 @@
-import React, { useState } from "react";
-import {
-  Carousel as BootstrapCarousel,
-  CarouselItem,
-  CarouselControl,
-} from "reactstrap";
+import React from "react";
+import Slider from "react-slick";
+import SliderArrow from "../SliderArrow/SliderArrow";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
-import "./Carousel.Styles.css";
 import Image from "../Image/Image";
 
 function Carousel({ items }) {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [animating] = useState(false);
-
-  const next = () => {
-    if (animating) return;
-    const nextIndex = activeIndex === items.length - 1 ? 0 : activeIndex + 1;
-    setActiveIndex(nextIndex);
+  const settings = {
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    dots: false,
+    arrows: true,
+    infinite: true,
+    nextArrow: <SliderArrow />,
+    prevArrow: <SliderArrow isLeft={true} />,
   };
-
-  const previous = () => {
-    if (animating) return;
-    const nextIndex = activeIndex === 0 ? items.length - 1 : activeIndex - 1;
-    setActiveIndex(nextIndex);
-  };
-  const slides = items.map((item) => {
-    return (
-      <CarouselItem key={item.poster_path} className="another">
-        <Image
-          src={item.backdrop_path}
-          alt={item.original_title}
-          className="image"
-        />
-      </CarouselItem>
-    );
-  });
-  return (
-    <BootstrapCarousel
-      activeIndex={activeIndex}
-      next={next}
-      interval={false}
-      previous={previous}
-    >
-      {slides}
-
-      <CarouselControl
-        direction="prev"
-        directionText="Previous"
-        onClickHandler={previous}
-      />
-      <CarouselControl
-        direction="next"
-        directionText="Next"
-        onClickHandler={next}
-      />
-    </BootstrapCarousel>
-  );
+  const slides = items.map((item) => (
+    <Image key={item.id} src={item.backdrop_path} />
+  ));
+  return <Slider {...settings}>{slides}</Slider>;
 }
 
 export default Carousel;

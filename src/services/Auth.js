@@ -16,7 +16,7 @@ const auth = {
       },
     });
     console.log(response);
-  },
+  },  
   isAuthenticated: () =>
     !!localStorage.getItem("userSession") ||
     !!localStorage.getItem("guestSession"),

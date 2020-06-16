@@ -1,26 +1,26 @@
  .slider__inner { 
     padding: 0 60px;
-
 } 
 
 /** To do: Avoid this*/
-.slick-list {
+.slider__inner .slick-list {
     height: 225px;
 }
 
-.slick-list {
+.slider__inner .slick-list {
     overflow: unset;
 }
 
-.slick-slide {
+.slider__inner .slick-slide {
     transition: transform .3s ease .1s,-webkit-transform .3s ease .1s;
     padding: 0 2px;
+    box-sizing: border-box;
 }
-.slick-slide:hover {
+.slider__inner .slick-slide:hover {
    transform: scale(1.5);
 }
 
-.slick-slide:hover .showmovieinfo-on-hover {
+.slider__inner .slick-slide:hover .showmovieinfo-on-hover {
     transition: opacity .62s,1s ease;
     opacity: 1;
     visibility: visible;

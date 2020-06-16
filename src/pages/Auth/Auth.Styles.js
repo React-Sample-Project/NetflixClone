@@ -77,7 +77,7 @@ export const AuthBody = styled.div`
 `;
 
 export const AuthBodyWrapper = styled.div`
-  min-height: 660px;
+  min-height: 460px;
   display: flex;
   border-radius: 4px;
   min-width: 380px;

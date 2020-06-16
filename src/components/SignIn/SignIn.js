@@ -16,7 +16,7 @@ import {
   SignInLabelWrapper,
 } from "./SignIn.Styles";
 import { useHistory } from "react-router-dom";
-import GoogleRecaptcha from "../GoogleRecaptcha/GoogleRecaptcha";
+// import GoogleRecaptcha from "../GoogleRecaptcha/GoogleRecaptcha";
 
 function SignIn() {
   const history = useHistory();
@@ -102,29 +102,29 @@ function SignIn() {
 
   const signIn = async (evObj) => {
     evObj.preventDefault();
-    try {
-      const token = await recapchaRef.current.executeAsync();
-      auth.verifyGoogleCaptcha(token);
-      if (!hasErrors()) {
-        const { success, statusMessage } = await auth.authenticateUser({
-          username,
-          password,
+    // try {
+    // const token = await recapchaRef.current.executeAsync();
+    // auth.verifyGoogleCaptcha(token);
+    if (!hasErrors()) {
+      const { success, statusMessage } = await auth.authenticateUser({
+        username,
+        password,
+      });
+      setCredentials({
+        username: "",
+        password: "",
+      });
+      if (success) {
+        history.push("/movie");
+      } else {
+        setErrors({
+          general: statusMessage,
         });
-        setCredentials({
-          username: "",
-          password: "",
-        });
-        if (success) {
-          history.push("/movie");
-        } else {
-          setErrors({
-            general: statusMessage,
-          });
-        }
       }
-    } catch (error) {
-      console.log(error);
     }
+    // } catch (error) {
+    //   console.log(error);
+    // }
   };
   const passwordLength = password.length;
   return (
@@ -132,7 +132,7 @@ function SignIn() {
       <SignInHeader>Sign In</SignInHeader>
       {generalError && <ErrorBanner>{generalError}</ErrorBanner>}
       <form method="post" onSubmit={signIn}>
-        <GoogleRecaptcha ref={recapchaRef} />
+        {/* <GoogleRecaptcha ref={recapchaRef} /> */}
         <InputMainWrapper>
           <InputWrapper>
             <SignInLabelWrapper>
