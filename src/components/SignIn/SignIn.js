@@ -16,6 +16,7 @@ import {
   SignInLabelWrapper,
 } from "./SignIn.Styles";
 import { useHistory } from "react-router-dom";
+import GoogleRecaptcha from "../GoogleRecaptcha/GoogleRecaptcha";
 
 function SignIn() {
   const history = useHistory();
@@ -35,6 +36,8 @@ function SignIn() {
     username: false,
     password: false,
   });
+
+  const recapchaRef = useRef();
 
   const passwordRef = useRef(null);
 
@@ -99,6 +102,8 @@ function SignIn() {
 
   const signIn = async (evObj) => {
     evObj.preventDefault();
+    const token = await recapchaRef.current.executeAsync();
+    console.log(token);
     if (!hasErrors()) {
       const { success, statusMessage } = await auth.authenticateUser({
         username,
@@ -123,6 +128,7 @@ function SignIn() {
       <SignInHeader>Sign In</SignInHeader>
       {generalError && <ErrorBanner>{generalError}</ErrorBanner>}
       <form method="post" onSubmit={signIn}>
+        <GoogleRecaptcha ref={recapchaRef} />
         <InputMainWrapper>
           <InputWrapper>
             <SignInLabelWrapper>
