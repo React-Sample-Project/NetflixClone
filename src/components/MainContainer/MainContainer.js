@@ -75,7 +75,7 @@ function MainContainer() {
       }
     }
     fetchCollection();
-  }, [slicedGenres, type]);
+  }, [slicedGenres]);
   // type is not added as dependency because I don't want the function to be called when type changes. Because at that time slicedGenres has old values.
   return (
     <Main ref={collectionRef}>
