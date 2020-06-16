@@ -102,24 +102,28 @@ function SignIn() {
 
   const signIn = async (evObj) => {
     evObj.preventDefault();
-    const token = await recapchaRef.current.executeAsync();
-    console.log(token);
-    if (!hasErrors()) {
-      const { success, statusMessage } = await auth.authenticateUser({
-        username,
-        password,
-      });
-      setCredentials({
-        username: "",
-        password: "",
-      });
-      if (success) {
-        history.push("/movie");
-      } else {
-        setErrors({
-          general: statusMessage,
+    try {
+      const token = await recapchaRef.current.executeAsync();
+      auth.verifyGoogleCaptcha(token);
+      if (!hasErrors()) {
+        const { success, statusMessage } = await auth.authenticateUser({
+          username,
+          password,
         });
+        setCredentials({
+          username: "",
+          password: "",
+        });
+        if (success) {
+          history.push("/movie");
+        } else {
+          setErrors({
+            general: statusMessage,
+          });
+        }
       }
+    } catch (error) {
+      console.log(error);
     }
   };
   const passwordLength = password.length;

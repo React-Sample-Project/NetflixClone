@@ -6,7 +6,17 @@ const auth = {
     await API({
       url: "/authentication/token/new",
     }),
-
+  verifyGoogleCaptcha: async (token) => {
+    const response = await API({
+      url: "https://www.google.com/recaptcha/api/siteverify",
+      method: "POST",
+      data: {
+        secret: process.env.REACT_APP_GOOGLE_CAPTCHA_SECRET_KEY,
+        response: token,
+      },
+    });
+    console.log(response);
+  },
   isAuthenticated: () =>
     !!localStorage.getItem("userSession") ||
     !!localStorage.getItem("guestSession"),
