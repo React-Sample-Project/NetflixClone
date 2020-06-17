@@ -16,7 +16,14 @@ function CollectionCarousel({ isLoading, genreName, movie, tv, genreId }) {
         {isLoading ? (
           "\u00A0"
         ) : (
-          <CardTitle to={`${match.url}/genre/${genreId}`}>
+          <CardTitle
+            to={{
+              pathname: `${match.url}/genre/${genreId}`,
+              state: {
+                genreName,
+              },
+            }}
+          >
             {genreName}
           </CardTitle>
         )}

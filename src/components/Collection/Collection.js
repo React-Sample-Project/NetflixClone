@@ -6,8 +6,9 @@ import useFetch from "../../hooks/useFetch";
 import { chunkArrays, isBottom } from "../../utils";
 import "./Collection.Styles.css";
 import DataFetchConstants from "../../store/DataFetch/DataFetch.Constants";
+import { Header, HeaderText } from "./Collection.Styles";
 
-function Collection({ fetchMethod, args, onResultsChange }) {
+function Collection({ fetchMethod, args, title, onResultsChange }) {
   const [slicedCollection, setSlicedCollection] = useState([]);
   const rootRef = useRef(null);
   // To do: for responsiveness
@@ -56,10 +57,13 @@ function Collection({ fetchMethod, args, onResultsChange }) {
     }
   }, [collection]);
   return (
-    <div style={{ paddingTop: "3%", position: "relative" }} ref={rootRef}>
+    <div style={{ paddingTop: "1%", position: "relative" }} ref={rootRef}>
+      <Header>
+        <HeaderText>{title}</HeaderText>
+      </Header>
       {slicedCollection.map((collection) => (
         <CollectionSlider
-          className="genre-customization"
+          className="collection-customization"
           items={collection}
           isLoading={collection[collection.length - 1].isLoading}
           key={collection[0].id}

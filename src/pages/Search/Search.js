@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import useQuery from "../../hooks/useQuery";
 import useDebounce from "../../hooks/useDebounce";
 
-import { searchCollection } from "../../services/Data";
+import { searchCollection } from "../../services/Media";
 import Collection from "../../components/Collection/Collection";
 import NoResults from "../../components/NoResults/NoResults";
 
@@ -34,6 +34,7 @@ function Search() {
         <Collection
           fetchMethod={searchCollection}
           args={[searchQuery]}
+          title={`Search Results for ${searchQuery}`}
           onResultsChange={onResultsChange}
         />
       )}

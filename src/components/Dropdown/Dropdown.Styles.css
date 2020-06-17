@@ -1,0 +1,31 @@
+
+.dropdown__control {
+  color: #fff;
+  background-color: #000;
+  text-align: left;
+  display: inline-block;
+  border-radius: 0;
+  height: 2.5rem;
+  padding-left: 10px;
+  padding-right: 50px;
+  letter-spacing: 1px;
+  font-size: 1.25rem;
+  font-weight: 700;
+  border: 1px solid rgba(255,255,255,.9);
+}
+
+.dropdown__option {
+  color: inherit;
+}
+
+.dropdown__menu {
+  overflow-x: hidden;
+  z-index: 2;
+  padding: 0;
+  margin: 0;
+  top: 2.5rem;
+  left: 0;
+  font-size: 14px;
+  color:#fff;
+  background-color: rgba(0,0,0,.9);
+}

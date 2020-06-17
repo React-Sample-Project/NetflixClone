@@ -1,4 +1,5 @@
 import API from "./API";
+import { formatResponse } from "./Media";
 
 const localStorage = window.localStorage;
 
@@ -32,22 +33,14 @@ const account = {
     }
   },
 
-  getWatchList: async () => {
+  getWatchList: async (type) => {
     const { id } = account.getUserInfo();
     if (id) {
-      const url = `account/${id}/watchlist`;
-      const movies = await API({
-        url: `${url}/movies`,
+      const media = await API({
+        url: `account/${id}/watchlist/${type}`,
         isSessionRequired: true,
       });
-      const tv = await API({
-        url: `${url}/tv`,
-        isSessionRequired: true,
-      });
-      return {
-        movies,
-        tv,
-      };
+      return formatResponse(media);
     }
   },
 };
