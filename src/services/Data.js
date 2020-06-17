@@ -17,7 +17,7 @@ export const fetchCollectionForGenre = async (genreId, type, page = 1) => {
       page,
     },
   });
-  return getResponse(movies);
+  return formatResponse(movies);
 };
 
 export const fetchGenres = async (type) => {
@@ -41,7 +41,7 @@ export const fetchCollectionsOfGenres = async (genres, type) => {
   }
 };
 
-export const getResponse = ({ results, total_pages }) => ({
+export const formatResponse = ({ results, total_pages }) => ({
   results: results,
   totalPages: total_pages,
 });
@@ -60,6 +60,6 @@ export const searchCollection = async (query, page = 1) => {
       url: "search/movie",
       cancelToken: source.token,
     });
-    return getResponse(collection);
+    return formatResponse(collection);
   }
 };

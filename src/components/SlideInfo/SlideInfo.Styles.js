@@ -1,5 +1,6 @@
 import styled from "styled-components";
 
+
 export const MovieInfoContainer = styled.div`
   position: absolute;
   bottom: 24%;
@@ -23,4 +24,8 @@ export const MovieInfo = styled.span`
   display: inline-block;
   height: 5vh;
   overflow: ${({ expanded }) => (expanded ? "visible" : "hidden")};
+`;
+
+export const MovieActionsWrapper = styled.div`
+  flex: 0 0 10%;
 `;

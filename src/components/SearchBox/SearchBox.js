@@ -1,12 +1,11 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useHistory, useLocation } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
 import { SearchBoxMain } from "./SearchBox.Styles";
 import { NavIcon } from "../Navbar/Navbar.Styles";
 
 import SearchInput from "../SearchInput";
+import SearchIcon from "../SearchIcon/SearchIcon";
 
 function SearchBox() {
   const [inputShown, setInputShown] = useState(false);
@@ -47,19 +46,10 @@ function SearchBox() {
 
   const onButtonClick = () => setInputShown(true);
 
-  const searchIconStyle = {
-    fontSize: "1.3em",
-    verticalAlign: "middle",
-    marginRight: 0,
-    padding: "0 6px",
-    lineHeight: 1,
-    width: "auto",
-  };
   return (
     <SearchBoxMain>
       {inputShown ? (
         <SearchInput
-          searchIconStyle={searchIconStyle}
           onFocus={onInputFocus}
           onChange={onInputChange}
           value={searchValue}
@@ -73,7 +63,7 @@ function SearchBox() {
           tabIndex="0"
           onClick={onButtonClick}
         >
-          <FontAwesomeIcon icon={faSearch} style={searchIconStyle} />
+          <SearchIcon />
         </NavIcon>
       )}
     </SearchBoxMain>

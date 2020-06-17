@@ -1,22 +1,14 @@
 import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import {
   SearchInput as SearchInputMain,
   SearchBox,
 } from "./SearchInput.Styles";
+import SearchIcon from "../SearchIcon/SearchIcon";
 
-function SearchInput({
-  searchIconStyle,
-  onFocus,
-  onBlur,
-  focused,
-  onChange,
-  value,
-}) {
+function SearchInput({ onFocus, onBlur, focused, onChange, value }) {
   return (
     <SearchInputMain>
-      <FontAwesomeIcon icon={faSearch} style={searchIconStyle} />
+      <SearchIcon />
       <SearchBox
         onFocus={onFocus}
         onBlur={onBlur}

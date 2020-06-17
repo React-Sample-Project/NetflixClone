@@ -4,6 +4,7 @@ axios.defaults.baseURL = "https://api.themoviedb.org/3";
 axios.defaults.headers.common["Content-Type"] = "application/json";
 const API = async ({
   url,
+  isSessionRequired,
   method = "GET",
   headers = {},
   cancelToken,
@@ -15,9 +16,12 @@ const API = async ({
   requestParams = {
     ...requestParams,
   };
+  const sessionId = window.localStorage.getItem("userSession");
   try {
     const { status, data, statusText } = await axios.request({
-      url: `${url}?api_key=${process.env.REACT_APP_API_KEY}`,
+      url: `${url}?api_key=${process.env.REACT_APP_API_KEY}${
+        isSessionRequired && sessionId ? `&session_id=${sessionId}` : ""
+      }`,
       method,
       cancelToken,
       headers,

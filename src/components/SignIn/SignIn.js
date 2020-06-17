@@ -37,7 +37,7 @@ function SignIn() {
     password: false,
   });
 
-  const recapchaRef = useRef();
+  // const recapchaRef = useRef();
 
   const passwordRef = useRef(null);
 
@@ -69,7 +69,7 @@ function SignIn() {
     return !!newErrorValue;
   };
 
-  const handleFocus = ({ type, target: { name }, relatedTarget }) => {
+  const handleFocus = ({ type, target: { name } }) => {
     const newValue = type === "focus" ? true : false;
     if (newValue !== isFocused[name]) {
       setFocused((old) => ({

@@ -70,11 +70,7 @@ function Navbar() {
             </RightNavItem>
             <RightNavItem>
               <NavIcon>
-                <FontAwesomeIcon
-                  icon={faBell}
-                  className="nav__icons"
-                  style={{ width: "auto" }}
-                />
+                <FontAwesomeIcon icon={faBell} style={{ width: "auto" }} />
               </NavIcon>
             </RightNavItem>
           </RightNav>

@@ -32,10 +32,6 @@ function App() {
       route: "/:type(tv|movie)?/genre/:id",
       component: Genre,
     },
-    {
-      route: "*",
-      component: NotFound,
-    },
   ];
   return (
     <Router>
@@ -46,22 +42,26 @@ function App() {
           <Route exact path="/">
             <Auth />
           </Route>
-          {pages.map((page, index) => (
-            <ProtectedRoute key={index} exact path={page.route}>
-              <Route>
-                <div>
-                  <div>
-                    <Main>
-                      <Navbar />
+          <Route>
+            <div>
+              <div>
+                <Main>
+                  {/** Navbar is kept outside to prevent re-rendering of Navbar on protected route change */}
+                  <Navbar />
+                  {pages.map((page, index) => (
+                    <ProtectedRoute key={index} exact path={page.route}>
                       <MainView>
                         <page.component />
                       </MainView>
-                    </Main>
-                  </div>
-                </div>
-              </Route>
-            </ProtectedRoute>
-          ))}
+                    </ProtectedRoute>
+                  ))}
+                </Main>
+              </div>
+            </div>
+          </Route>
+          <Route>
+            <NotFound />
+          </Route>
         </Switch>
       </>
     </Router>

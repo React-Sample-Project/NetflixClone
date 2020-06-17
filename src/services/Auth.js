@@ -1,4 +1,5 @@
 import API from "./API";
+import account from "./Account";
 const localStorage = window.localStorage;
 
 const auth = {
@@ -16,7 +17,7 @@ const auth = {
       },
     });
     console.log(response);
-  },  
+  },
   isAuthenticated: () =>
     !!localStorage.getItem("userSession") ||
     !!localStorage.getItem("guestSession"),
@@ -51,6 +52,7 @@ const auth = {
           sessionStatus = status_message;
           if (session_id) {
             loginSuccess = true;
+            account.getAccountDetails(session_id);
             localStorage.setItem("userSession", session_id);
           }
         }
