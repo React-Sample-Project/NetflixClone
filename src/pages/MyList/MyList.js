@@ -3,7 +3,7 @@ import Collection from "../../components/Collection";
 import account from "../../services/Account";
 import { MyListDropdown } from "./MyList.Styles";
 function MyList() {
-  const [mediaType, setMediaType] = useState("movies");
+  const [mediaType, setMediaType] = useState(["movies"]);
   const options = [
     {
       value: "movies",
@@ -15,11 +15,10 @@ function MyList() {
     },
   ];
   const onDropdownChange = ({ value }) => {
-    setMediaType(value);
+    setMediaType([value]);
   };
   return (
     <div>
-      <div></div>
       <Collection
         fetchMethod={account.getWatchList}
         title={
@@ -34,7 +33,7 @@ function MyList() {
             />
           </>
         }
-        args={[mediaType]}
+        args={mediaType}
       />
     </div>
   );

@@ -5,7 +5,7 @@ import useFetch from "../../hooks/useFetch";
 
 import { chunkArrays, isBottom } from "../../utils";
 import "./Collection.Styles.css";
-import DataFetchConstants from "../../store/DataFetch/DataFetch.Constants";
+import { DataFetchConstants } from "../../store/reducers/AsyncFetchArray";
 import { Header, HeaderText } from "./Collection.Styles";
 
 function Collection({ fetchMethod, args, title, onResultsChange }) {
@@ -14,17 +14,17 @@ function Collection({ fetchMethod, args, title, onResultsChange }) {
   // To do: for responsiveness
   const length = 6;
   // Math.ceil(document.documentElement.clientWidth / 318)
-  const [{ data: collection, currentPage, totalPages }, dispatch] = useFetch(
-    fetchMethod,
-    null,
-    args,
-    {
-      paging: true,
-    }
-  );
+  const [
+    { data: collection, currentPage, totalPages },
+    dispatch,
+    asyncFunction,
+  ] = useFetch(fetchMethod, null, {
+    paging: true,
+  });
 
   useScroll(() => {
-    if (isBottom(rootRef.current) && currentPage <= totalPages) {
+    if (isBottom(rootRef.current) && currentPage < totalPages) {
+      console.log(currentPage);
       dispatch({ type: DataFetchConstants.INCREMENT_CURRENT_PAGE });
     }
   });
@@ -34,14 +34,21 @@ function Collection({ fetchMethod, args, title, onResultsChange }) {
   }, [onResultsChange, collection]);
 
   useEffect(() => {
+    // To prevent calling the same function twice at first time when arguments change, this condition is added
+    if (currentPage > 1) {
+      asyncFunction(...args, currentPage);
+    }
+  }, [asyncFunction, currentPage]);
+
+  useEffect(() => {
     dispatch({
       type: DataFetchConstants.RESET_STATE,
       payload: {
-        paging: true,
         data: null,
       },
     });
-  }, [dispatch, args]);
+    asyncFunction(...args);
+  }, [dispatch, asyncFunction, args]);
 
   useEffect(() => {
     if (collection) {

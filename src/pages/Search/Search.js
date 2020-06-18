@@ -13,7 +13,7 @@ function Search() {
   const debouncedSearchTerm = useDebounce(query.get("q"), 1000);
   useEffect(() => {
     if (debouncedSearchTerm) {
-      setSearchQuery(debouncedSearchTerm);
+      setSearchQuery([debouncedSearchTerm]);
     }
   }, [debouncedSearchTerm]);
   const onResultsChange = useCallback(
@@ -33,7 +33,7 @@ function Search() {
       {searchQuery !== null && (
         <Collection
           fetchMethod={searchCollection}
-          args={[searchQuery]}
+          args={searchQuery}
           title={`Search Results for ${searchQuery}`}
           onResultsChange={onResultsChange}
         />

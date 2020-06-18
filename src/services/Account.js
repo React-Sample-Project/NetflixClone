@@ -43,6 +43,15 @@ const account = {
       return formatResponse(media);
     }
   },
+
+  getStates: async (mediaType, mediaId) => {
+    if (mediaId && mediaType) {
+      return await API({
+        url: `${mediaType}/${mediaId}/account_states`,
+        isSessionRequired: true,
+      });
+    }
+  },
 };
 
 export default account;

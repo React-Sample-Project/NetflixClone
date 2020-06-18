@@ -70,7 +70,7 @@ function CollectionSlider({
         <CollectionSlide
           image={poster_path}
           title={original_title || original_name}
-          key={poster_path || id}
+          key={id}
           id={id}
           {...otherProps}
         ></CollectionSlide>

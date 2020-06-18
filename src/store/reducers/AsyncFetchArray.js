@@ -1,5 +1,12 @@
-import DataFetchConstants from "./DataFetch.Constants";
 import { generateLoadingItems } from "../../utils";
+
+export const DataFetchConstants = {
+  FETCH_INIT: "FETCH_INIT",
+  FETCH_SUCCESS: "FETCH_SUCCESS",
+  FETCH_ERROR: "FETCH_ERROR",
+  INCREMENT_CURRENT_PAGE: "INCREMENT_CURRENT_PAGE",
+  RESET_STATE: "RESET_STATE",
+};
 
 const removeLoadingData = (data) => {
   let newCollection = null;
@@ -11,17 +18,25 @@ const removeLoadingData = (data) => {
   }
   return newCollection;
 };
-
 const dataFetchReducer = (state, { type, payload }) => {
   const { data, paging, currentPage } = state;
   const customLoader = generateLoadingItems();
   let newCollection;
+  const {
+    FETCH_INIT,
+    FETCH_SUCCESS,
+    FETCH_ERROR,
+    RESET_STATE,
+    INCREMENT_CURRENT_PAGE,
+  } = DataFetchConstants;
+
   switch (type) {
-    case DataFetchConstants.FETCH_INIT:
+    case FETCH_INIT:
       let isLoaderAdded = false;
       if (data && data.length && data[data.length - 1].isLoading) {
         isLoaderAdded = true;
       }
+      console.log(data, !isLoaderAdded, paging, data);
       return {
         ...state,
         isLoading: true,
@@ -32,7 +47,7 @@ const dataFetchReducer = (state, { type, payload }) => {
             : [...customLoader]
           : state.data,
       };
-    case DataFetchConstants.FETCH_SUCCESS:
+    case FETCH_SUCCESS:
       newCollection = removeLoadingData(data);
       return {
         ...state,
@@ -43,7 +58,7 @@ const dataFetchReducer = (state, { type, payload }) => {
           ? [...newCollection, ...payload.data]
           : [...payload.data],
       };
-    case DataFetchConstants.FETCH_ERROR:
+    case FETCH_ERROR:
       newCollection = removeLoadingData(data);
       return {
         ...state,
@@ -51,15 +66,16 @@ const dataFetchReducer = (state, { type, payload }) => {
         isError: true,
         data: paging && newCollection ? [...newCollection] : null,
       };
-    case DataFetchConstants.RESET_STATE:
+    case RESET_STATE:
       return {
         isLoading: false,
         isError: false,
         currentPage: 1,
         totalPages: 1,
+        paging: state.paging,
         ...payload,
       };
-    case DataFetchConstants.INCREMENT_CURRENT_PAGE:
+    case INCREMENT_CURRENT_PAGE:
       return {
         ...state,
         currentPage: currentPage + 1,

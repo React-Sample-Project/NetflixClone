@@ -10,14 +10,14 @@ export const fetchTrending = async (type) => {
 };
 
 export const fetchCollectionForGenre = async (genreId, type, page = 1) => {
-  const movies = await API({
+  const media = await API({
     url: `discover/${type}`,
     data: {
       with_genres: genreId,
       page,
     },
   });
-  return formatResponse(movies);
+  return formatResponse(media);
 };
 
 export const fetchGenres = async (type) => {

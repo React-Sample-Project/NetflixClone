@@ -8,6 +8,7 @@ import {
 
 import {
   faPlus,
+  faSpinner,
   faThumbsUp,
   faThumbsDown,
 } from "@fortawesome/free-solid-svg-icons";
@@ -26,7 +27,11 @@ function CollectionActionButtons({ mediaId, mediaType }) {
         <ActionIcon icon={faThumbsDown} />
       </SVGCircle>
       <SVGCircle>
-        <ActionIcon icon={faPlus} onClick={addToWatchList} />
+        <ActionIcon
+          icon={faSpinner}
+          className="fa-spin"
+          onClick={addToWatchList}
+        />
       </SVGCircle>
     </CollectionButtonsMain>
   );
