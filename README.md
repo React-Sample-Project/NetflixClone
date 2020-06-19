@@ -21,10 +21,11 @@ Movieflix is a open-source project that is a clone of the real Netflix. The idea
 2. Preview of popular movies and TV series for each Genre.
 3. View all the movies and TV series belonging to a particular genre.
 4. TMDB account users can add a particular movie or series to their watch list and favorite list. This feature is not available for guest users.
-5. View the list of movies in Watch list and favorites.
+5. View the list of movies in Watch list and favorites. (Available for TMDB users only)
 6. Watch the information related to a movie or TV series by clicking it.
 7. Search the movies using the global search.
 8. Lazy loading in all the pages.
+
 
 
 ## Roadmap
