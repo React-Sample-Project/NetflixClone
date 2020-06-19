@@ -6,6 +6,8 @@ import { faBell } from "@fortawesome/free-solid-svg-icons";
 
 import SearchBox from "../SearchBox";
 
+import auth from "../../services/Auth";
+
 import useWindowScrollPosition from "@rehooks/window-scroll-position";
 import {
   NavContainer,
@@ -60,9 +62,11 @@ function Navbar() {
             <LeftNavItem>
               <Link to="/latest">Latest</Link>
             </LeftNavItem>
-            <LeftNavItem>
-              <Link to="/my-list">My List</Link>
-            </LeftNavItem>
+            {auth.isUser() && (
+              <LeftNavItem>
+                <Link to="/my-list">My List</Link>
+              </LeftNavItem>
+            )}
           </LeftNav>
           <RightNav>
             <RightNavItem>

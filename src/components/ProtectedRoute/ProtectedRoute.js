@@ -3,17 +3,18 @@ import { Route, Redirect } from "react-router-dom";
 import auth from "../../services/Auth";
 
 function ProtectedRoute({ children, ...rest }) {
-  //   console.log(
-  //     auth.isAuthenticated,
-  //     localStorage.getItem("userSession"),
-  //     children
-  //   );
   return (
     <Route
       {...rest}
       render={({ location }) => {
         return auth.isAuthenticated() ? (
-          children
+          location.pathname === "/my-list" && auth.isGuest() ? (
+            <Redirect
+              to={{ pathname: "/", state: { from: location.pathname } }}
+            />
+          ) : (
+            children
+          )
         ) : (
           <Redirect
             to={{ pathname: "/", state: { from: location.pathname } }}
