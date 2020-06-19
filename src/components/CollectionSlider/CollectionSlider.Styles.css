@@ -21,7 +21,7 @@
 }
 
 .slider__inner .slick-slide:hover .showmovieinfo-on-hover {
-    transition: opacity .62s,1s ease;
+    /* transition: opacity .62s,1s ease; */
     opacity: 1;
     visibility: visible;
 }

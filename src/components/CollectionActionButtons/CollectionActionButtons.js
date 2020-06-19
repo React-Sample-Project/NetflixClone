@@ -7,39 +7,47 @@ import {
 } from "./CollectionActionButtons.Styles";
 
 import {
+  faThumbsUp as regularFaThumpsUp,
+  // faThumbsDown as regularFaThumbsDown,
+} from "@fortawesome/free-regular-svg-icons";
+
+import {
   faPlus,
   faCheck,
+  // faThumbsDown,
   faSpinner,
   faThumbsUp,
-  faThumbsDown,
 } from "@fortawesome/free-solid-svg-icons";
 
 function CollectionActionButtons({ accountStates, isLoading, onClick }) {
   const { watchlist: watched, favorite } = accountStates;
+  const loadingClass = isLoading && "fa-spin";
   return (
     <CollectionButtonsMain>
       <SVGCircle>
         <ActionIcon
-          icon={isLoading ? faSpinner : faThumbsUp}
+          icon={
+            isLoading ? faSpinner : favorite ? faThumbsUp : regularFaThumpsUp
+          }
           onClick={onClick}
-          className={isLoading ? "fa-spin" : favorite ? "fas" : "far"}
+          className={loadingClass}
           name="favorite"
         />
       </SVGCircle>
-      {!favorite && (
+      {/* {!favorite && (
         <SVGCircle>
           <ActionIcon
-            icon={isLoading ? faSpinner : faThumbsDown}
-            className={isLoading && "fa-spin"}
+            icon={isLoading ? faSpinner : regularFaThumbsDown}
+            className={loadingClass}
             onClick={onClick}
             name="unfavorite"
           />
         </SVGCircle>
-      )}
+      )} */}
       <SVGCircle>
         <ActionIcon
           icon={isLoading ? faSpinner : watched ? faCheck : faPlus}
-          className={isLoading && "fa-spin"}
+          className={loadingClass}
           onClick={onClick}
           name="watchlist"
         />

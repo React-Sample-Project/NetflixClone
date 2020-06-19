@@ -44,11 +44,14 @@ const account = {
     }
   },
 
-  getStates: async (mediaType, mediaId) => {
+  getMediaInfo: async (mediaType, mediaId) => {
     if (mediaId && mediaType) {
       return await API({
-        url: `${mediaType}/${mediaId}/account_states`,
+        url: `${mediaType}/${mediaId}`,
         isSessionRequired: true,
+        data: {
+          append_to_response: "account_states"
+        }
       });
     }
   },
