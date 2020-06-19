@@ -4,21 +4,32 @@ Movieflix is a open-source project that is a clone of the real Netflix. The idea
 
 ## Version 1
 
-## Technologies
+## Technologies and libraries used
 
 1. React along with all its moder features (Hooks etc)
-2. TMDB API for the movie information and user authentication
-3. Styling is done with styled-components librar
+2. TMDB API for the movie information and user authentication & authorization
+3. Styling is done with styled-components library.
 4. Routing is handled using react-router-dom (Version 5 using hooks)
 5. Netflix style carousel is implemented with react-slick
+6. Font Awesome icons are used for the icons in the application
+
 
 
 ## Features
 
-1. Users can login to the application using TMDB's Guest and User account
-2. Users can view the popular movies and TV series for each Genre
-3. Users can also view all the movies and TV series from a particular genre
-4. Users can add a particular movie to their watch list
-5. Users can watch the information related to a movie or TV series by clicking it
+1. Login to the application using TMDB's Guest and User account.
+2. Preview of popular movies and TV series for each Genre.
+3. View all the movies and TV series belonging to a particular genre.
+4. TMDB account users can add a particular movie or series to their watch list and favorite list. This feature is not available for guest users.
+5. View the list of movies in Watch list and favorites. (Available for TMDB users only)
+6. Watch the information related to a movie or TV series by clicking it.
+7. Search the movies using the global search.
+8. Lazy loading in all the pages.
+
+
+
+## Roadmap
+
+Incrementally adding the features present in Netflix
 
 
