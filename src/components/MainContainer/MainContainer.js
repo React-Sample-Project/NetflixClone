@@ -55,10 +55,11 @@ function MainContainer() {
   });
 
   useEffect(() => {
-    trendingDispatch({ type: "RESET_STATE" });
-    genreDispatch({ type: "RESET_STATE" });
+    const resetState = { type: "RESET_STATE" };
+    trendingDispatch(resetState);
+    genreDispatch(resetState);
     collectionDispatch({
-      type: "RESET_STATE",
+      ...resetState,
       payload: {
         data: null,
       },

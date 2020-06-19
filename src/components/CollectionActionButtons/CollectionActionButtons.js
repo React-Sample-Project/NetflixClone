@@ -8,29 +8,40 @@ import {
 
 import {
   faPlus,
+  faCheck,
   faSpinner,
   faThumbsUp,
   faThumbsDown,
 } from "@fortawesome/free-solid-svg-icons";
-import account from "../../services/Account";
 
-function CollectionActionButtons({ mediaId, mediaType }) {
-  const addToWatchList = async () => {
-    await account.addToWatchList(mediaId, mediaType);
-  };
+function CollectionActionButtons({ accountStates, isLoading, onClick }) {
+  const { watchlist: watched, favorite } = accountStates;
   return (
     <CollectionButtonsMain>
       <SVGCircle>
-        <ActionIcon icon={faThumbsUp} />
+        <ActionIcon
+          icon={isLoading ? faSpinner : faThumbsUp}
+          onClick={onClick}
+          className={isLoading ? "fa-spin" : favorite ? "fas" : "far"}
+          name="favorite"
+        />
       </SVGCircle>
-      <SVGCircle>
-        <ActionIcon icon={faThumbsDown} />
-      </SVGCircle>
+      {!favorite && (
+        <SVGCircle>
+          <ActionIcon
+            icon={isLoading ? faSpinner : faThumbsDown}
+            className={isLoading && "fa-spin"}
+            onClick={onClick}
+            name="unfavorite"
+          />
+        </SVGCircle>
+      )}
       <SVGCircle>
         <ActionIcon
-          icon={faSpinner}
-          className="fa-spin"
-          onClick={addToWatchList}
+          icon={isLoading ? faSpinner : watched ? faCheck : faPlus}
+          className={isLoading && "fa-spin"}
+          onClick={onClick}
+          name="watchlist"
         />
       </SVGCircle>
     </CollectionButtonsMain>

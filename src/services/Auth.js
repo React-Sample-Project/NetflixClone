@@ -16,7 +16,6 @@ const auth = {
         response: token,
       },
     });
-    console.log(response);
   },
   isAuthenticated: () =>
     !!localStorage.getItem("userSession") ||

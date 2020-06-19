@@ -24,7 +24,6 @@ function Collection({ fetchMethod, args, title, onResultsChange }) {
 
   useScroll(() => {
     if (isBottom(rootRef.current) && currentPage < totalPages) {
-      console.log(currentPage);
       dispatch({ type: DataFetchConstants.INCREMENT_CURRENT_PAGE });
     }
   });
@@ -38,6 +37,8 @@ function Collection({ fetchMethod, args, title, onResultsChange }) {
     if (currentPage > 1) {
       asyncFunction(...args, currentPage);
     }
+    // args is not included in the dependency array since separate useEffect exists for args change and args and currentPage will not change at the same time.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [asyncFunction, currentPage]);
 
   useEffect(() => {
@@ -52,15 +53,7 @@ function Collection({ fetchMethod, args, title, onResultsChange }) {
 
   useEffect(() => {
     if (collection) {
-      // if (collectionLength > 0) {
-      //  const mod = collectionLength % length;
-      //let finalArray = collection;
-      // if (mod !== 0 && mod !== 1) {
-      // !!!important To do: Fix this. Not working when there is only one page and for example if there are 11 elements. Then only first 6 is displayed and the rest is ignored.
-      // finalArray = collection.slice(0, collectionLength - mod);
-      // }
       setSlicedCollection(chunkArrays(collection, length));
-      // }
     }
   }, [collection]);
   return (
@@ -73,7 +66,7 @@ function Collection({ fetchMethod, args, title, onResultsChange }) {
           className="collection-customization"
           items={collection}
           isLoading={collection[collection.length - 1].isLoading}
-          key={collection[0].id}
+          key={collection[0].id || collection[0].genreId}
           // length={Math.min(length, collection.length)}
           doNotAddControls={true}
         />

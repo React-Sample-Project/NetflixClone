@@ -17,7 +17,9 @@ export default function asyncFetchReducer(state, { type, payload }) {
     case FETCH_SUCCESS:
       return {
         isLoading: false,
-        data: payload,
+        data: {
+          ...payload,
+        },
         error: null,
       };
     case FETCH_ERROR:

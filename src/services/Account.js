@@ -16,17 +16,17 @@ const account = {
     localStorage.setItem("userInfo", JSON.stringify(user));
   },
 
-  addToWatchList: async (mediaId, mediaType) => {
+  updateAccountStates: async (mediaId, mediaType, keyName, value) => {
     const { id } = account.getUserInfo();
     if (id) {
       const response = await API({
-        url: `account/${id}/watchlist`,
+        url: `account/${id}/${keyName}`,
         method: "POST",
         isSessionRequired: true,
         data: {
           media_type: mediaType,
           media_id: mediaId,
-          watchlist: true,
+          [keyName]: value,
         },
       });
       return response;

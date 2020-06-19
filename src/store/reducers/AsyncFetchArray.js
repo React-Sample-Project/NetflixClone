@@ -36,7 +36,6 @@ const dataFetchReducer = (state, { type, payload }) => {
       if (data && data.length && data[data.length - 1].isLoading) {
         isLoaderAdded = true;
       }
-      console.log(data, !isLoaderAdded, paging, data);
       return {
         ...state,
         isLoading: true,
