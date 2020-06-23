@@ -17,13 +17,47 @@ const auth = {
   //     },
   //   });
   // },
-  isGuest: () => localStorage.getItem("guestSession"),
-  isUser: () => localStorage.getItem("userSession"),
-  isAuthenticated: () => !!auth.isUser() || !!auth.isGuest(),
+  getSessionId: () => auth.getUserSession() || auth.getGuestSession(),
+  getGuestSession: () => localStorage.getItem("guestSession"),
+  getUserSession: () => localStorage.getItem("userSession"),
+  isSessionValidated: null,
+  isAuthenticated: async () => {
+    let returnValue = null;
+    const sessionId = auth.getUserSession();
+    if (sessionId) {
+      const { username } = account.isValidated
+        ? account.getUserInfo()
+        : await account.getAccountDetails(sessionId);
+      returnValue = !!username;
+    } else {
+      returnValue = !!auth.getGuestSession() || false;
+    }
 
+    return (auth.isSessionValidated = returnValue);
+  },
+  removeUserAuth: () => {
+    localStorage.removeItem("userSession");
+    localStorage.removeItem("guestSession");
+    localStorage.removeItem("userInfo");
+    account.isValidated = auth.isSessionValidated = false;
+  },
+  logout: async () => {
+    const success = await API({
+      url: "authentication/session",
+      method: "DELETE",
+      data: {
+        session_id: auth.getSessionId(),
+      },
+    });
+    if (success) {
+      auth.removeUserAuth();
+      return true;
+    }
+    return false;
+  },
   authenticateUser: async ({ username, password }) => {
-    let loginSuccess = auth.isAuthenticated();
-    if (!loginSuccess) {
+    auth.isSessionValidated = await auth.isAuthenticated();
+    if (!auth.isSessionValidated) {
       const { request_token } = await auth.getRequestToken();
       let sessionStatus;
       if (request_token) {
@@ -50,20 +84,20 @@ const auth = {
           });
           sessionStatus = status_message;
           if (session_id) {
-            loginSuccess = true;
-            account.getAccountDetails(session_id);
+            auth.isSessionValidated = true;
+            await account.getAccountDetails(session_id);
             localStorage.setItem("userSession", session_id);
           }
         }
         return {
-          success: loginSuccess,
+          success: auth.isSessionValidated,
           statusCode,
           statusMessage: statusMessage || sessionStatus,
         };
       }
     }
     return {
-      success: loginSuccess,
+      success: auth.isSessionValidated,
     };
   },
   createGuestSession: async () => {

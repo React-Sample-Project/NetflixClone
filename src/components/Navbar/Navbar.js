@@ -1,9 +1,11 @@
 import React, { useState } from "react";
-import Logo from "../../assets/netflixLogo.png";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBell } from "@fortawesome/free-solid-svg-icons";
 
+import Logo from "../../assets/netflixLogo.png";
+
+import UserInfo from "../UserInfo";
 import SearchBox from "../SearchBox";
 
 import auth from "../../services/Auth";
@@ -22,6 +24,7 @@ import {
   RightNavItem,
   NavIcon,
 } from "./Navbar.Styles.js";
+import useAuth from "../../hooks/useAuth/useAuth";
 
 function Navbar() {
   const scrollOptions = {
@@ -36,6 +39,7 @@ function Navbar() {
   if (y <= changePosition && scroll) {
     setScroll(false);
   }
+  const [isAuthenticated] = useAuth();
   return (
     <NavContainer>
       <NavInner scroll={scroll}>
@@ -62,9 +66,11 @@ function Navbar() {
             <LeftNavItem>
               <Link to="/latest">Latest</Link>
             </LeftNavItem>
-            {auth.isUser() && (
+            {auth.getUserSession() && (
               <LeftNavItem>
-                <Link to="/my-list">My List</Link>
+                <Link to={{ pathname: "/my-list", search: "?type=movies" }}>
+                  My List
+                </Link>
               </LeftNavItem>
             )}
           </LeftNav>
@@ -77,6 +83,7 @@ function Navbar() {
                 <FontAwesomeIcon icon={faBell} style={{ width: "auto" }} />
               </NavIcon>
             </RightNavItem>
+            <RightNavItem>{isAuthenticated && <UserInfo />} </RightNavItem>
           </RightNav>
         </MainNav>
       </NavInner>

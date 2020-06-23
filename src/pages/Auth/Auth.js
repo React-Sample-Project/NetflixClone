@@ -16,12 +16,14 @@ import {
   LogoLink,
 } from "./Auth.Styles";
 import { Redirect } from "react-router-dom";
+import useAuth from "../../hooks/useAuth/useAuth";
 
-import auth from "../../services/Auth";
 function Auth() {
-  return auth.isAuthenticated() ? (
+  const [isLogged] = useAuth();
+  return isLogged === true ? (
     <Redirect to="/movie" />
-  ) : (
+  ) : isLogged === false ? (
+    // return (
     <AuthContainer>
       <AuthBackground>
         <img src={Cover} alt="loginCover" />
@@ -40,7 +42,8 @@ function Auth() {
         </div>
       </AuthBody>
     </AuthContainer>
-  );
+  ) : null;
+  // );
 }
 
 export default Auth;

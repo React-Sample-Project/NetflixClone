@@ -10,22 +10,19 @@ import CollectionSlider from "../CollectionSlider/CollectionSlider";
 
 function CollectionCarousel({ isLoading, genreName, movie, tv, genreId }) {
   const match = useRouteMatch();
+  const routeInfo = {
+    pathname: `${match.url}/genre/${genreId}`,
+    state: {
+      genreName,
+    },
+  };
   return (
     <CarouselTitleCard>
       <CardHeading isLoading={isLoading}>
         {isLoading ? (
           "\u00A0"
         ) : (
-          <CardTitle
-            to={{
-              pathname: `${match.url}/genre/${genreId}`,
-              state: {
-                genreName,
-              },
-            }}
-          >
-            {genreName}
-          </CardTitle>
+          <CardTitle to={routeInfo}>{genreName}</CardTitle>
         )}
       </CardHeading>
       <CarouselContainer>

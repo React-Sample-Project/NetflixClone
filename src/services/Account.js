@@ -5,8 +5,9 @@ const localStorage = window.localStorage;
 
 const account = {
   getUserInfo: () => JSON.parse(localStorage.getItem("userInfo")),
-
+  isValidated: false,
   getAccountDetails: async (sessionId) => {
+    account.isValidated = true;
     const user = await API({
       url: "account",
       data: {
@@ -14,6 +15,7 @@ const account = {
       },
     });
     localStorage.setItem("userInfo", JSON.stringify(user));
+    return user;
   },
 
   updateAccountStates: async (mediaId, mediaType, keyName, value) => {
@@ -46,12 +48,15 @@ const account = {
 
   getMediaInfo: async (mediaType, mediaId) => {
     if (mediaId && mediaType) {
+      const extractedMediaType = mediaType.includes("movie")
+        ? "movie"
+        : mediaType;
       return await API({
-        url: `${mediaType}/${mediaId}`,
+        url: `${extractedMediaType}/${mediaId}`,
         isSessionRequired: true,
         data: {
-          append_to_response: "account_states"
-        }
+          append_to_response: "account_states",
+        },
       });
     }
   },

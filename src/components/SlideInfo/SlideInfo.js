@@ -1,7 +1,9 @@
 import React, { useRef, useState, useEffect } from "react";
-import useFetch from "../../hooks/useFetch";
 
-import { useParams } from "react-router-dom";
+import useFetch from "../../hooks/useFetch";
+import useQuery from "../../hooks/useQuery";
+
+import { useParams, useLocation } from "react-router-dom";
 import {
   MovieInfoContainer,
   MovieTitle,
@@ -21,12 +23,15 @@ import auth from "../../services/Auth";
 
 function SlideInfo({ title, image, id, ...otherProps }) {
   const { type } = useParams();
+  const q = useQuery();
+  const { state } = useLocation();
+  const mediaType = type || q.get("type") || state.type;
   const fetchRef = useRef(false);
 
   const onMouseEnter = () => {
     if (!fetchRef.current) {
       fetchRef.current = true;
-      getMediaInfo(type, id);
+      getMediaInfo(mediaType, id);
     }
   };
   const [{ data: mediaInfo, isLoading }, , getMediaInfo] = useFetch(
@@ -110,7 +115,7 @@ function SlideInfo({ title, image, id, ...otherProps }) {
           </MetaWrapper>
           <div>{genres && <OverviewGenreList genres={genres} />}</div>
         </MovieTitleWrapper>
-        {auth.isUser() && (
+        {auth.getUserSession() && (
           <MovieActionsWrapper>
             <CollectionActionButtons
               isLoading={isLoading}

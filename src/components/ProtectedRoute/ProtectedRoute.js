@@ -1,28 +1,32 @@
 import React from "react";
 import { Route, Redirect } from "react-router-dom";
 import auth from "../../services/Auth";
+import NetflixSpinner from "../NetflixSpinner";
+import useAuth from "../../hooks/useAuth/useAuth";
 
-function ProtectedRoute({ children, ...rest }) {
+const ProtectedRoute = ({ children, ...rest }) => {
+  const [isAuthenticated] = useAuth();
   return (
     <Route
       {...rest}
-      render={({ location }) => {
-        return auth.isAuthenticated() ? (
-          location.pathname === "/my-list" && auth.isGuest() ? (
-            <Redirect
-              to={{ pathname: "/", state: { from: location.pathname } }}
-            />
+      render={({ location: { pathname } }) => {
+        const RedirectComponent = (
+          <Redirect to={{ pathname: "/", state: { from: pathname } }} />
+        );
+        return isAuthenticated === true ? (
+          pathname === "/my-list" && auth.getGuestSession() ? (
+            RedirectComponent
           ) : (
             children
           )
+        ) : isAuthenticated === false ? (
+          RedirectComponent
         ) : (
-          <Redirect
-            to={{ pathname: "/", state: { from: location.pathname } }}
-          />
+          <NetflixSpinner />
         );
       }}
     ></Route>
   );
-}
+};
 
 export default ProtectedRoute;
