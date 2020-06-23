@@ -2,6 +2,9 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 Movieflix is a open-source project that is a clone of the real Netflix. The idea of this project is to try to implement Netflix's design patterns using React and TMDB API. It is made for self learning only.
 
+## App URL
+https://videoflix.netlify.app/
+
 ## Version 1
 
 ## Technologies and libraries used
