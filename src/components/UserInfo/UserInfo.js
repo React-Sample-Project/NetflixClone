@@ -13,7 +13,7 @@ import { useHistory } from "react-router-dom";
 import useAuth from "../../hooks/useAuth/useAuth";
 
 function UserInfo() {
-  const { username } = account.getUserInfo();
+  const userInfo = account.getUserInfo();
   const history = useHistory();
   const [showDropdown, setShowDropdown] = useState(false);
   const [, setIsLoggedIn] = useAuth();
@@ -32,7 +32,7 @@ function UserInfo() {
         onClick={() => setShowDropdown((showDropdown) => !showDropdown)}
       >
         <UserNameContainer>{`Hi, ${
-          auth.getUserSession() ? username : "Guest"
+          auth.getUserSession() ? userInfo.username : "Guest"
         }`}</UserNameContainer>
         <DropdownIcon />
         <Dropdown show={showDropdown} onClick={logout}>
