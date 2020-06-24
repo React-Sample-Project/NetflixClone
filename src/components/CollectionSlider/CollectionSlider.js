@@ -46,7 +46,7 @@ function CollectionSlider({
   let slides = [];
   if (isLoading) {
     slides = getNumArray().map((val) => (
-      <CollectionSlide key={val} isLoading={isLoading} />
+      <CollectionSlide key={`loading-${val}`} isLoading={isLoading} />
     ));
   } else if (items) {
     let finalItems = [...items];
@@ -54,7 +54,7 @@ function CollectionSlider({
       finalItems = [
         ...finalItems,
         ...getNumArray(length - finalItems.length).map((val) => ({
-          id: val,
+          id: "item-" + val,
         })),
       ];
     }

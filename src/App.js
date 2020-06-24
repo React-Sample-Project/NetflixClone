@@ -5,6 +5,8 @@ import GlobalStyle from "./Global.Styles";
 import { Main, MainView } from "./App.Styles";
 
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
+
 import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
 import NetflixSpinner from "./components/NetflixSpinner/NetflixSpinner";
 
@@ -61,6 +63,7 @@ function App() {
                         </MainView>
                       </ProtectedRoute>
                     ))}
+                    <Footer />
                   </Main>
                 </div>
               </div>

@@ -16,6 +16,7 @@ import {
   LogoLink,
 } from "./Auth.Styles";
 import { Redirect } from "react-router-dom";
+import Footer from "../../components/Footer";
 import useAuth from "../../hooks/useAuth/useAuth";
 
 function Auth() {
@@ -41,6 +42,7 @@ function Auth() {
           </AuthBodyWrapper>
         </div>
       </AuthBody>
+      <Footer />
     </AuthContainer>
   ) : null;
   // );
