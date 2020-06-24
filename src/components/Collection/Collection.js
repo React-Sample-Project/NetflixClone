@@ -32,24 +32,24 @@ function Collection({ fetchMethod, args, title, onResultsChange }) {
     onResultsChange && onResultsChange(collection);
   }, [onResultsChange, collection]);
 
+  const prevArgs = useRef([...args]);
   useEffect(() => {
-    // To prevent calling the same function twice at first time when arguments change, this condition is added
-    if (currentPage > 1) {
-      asyncFunction(...args, currentPage);
+    let resetState = false;
+    if (prevArgs.current[0] !== args[0]) {
+      resetState = true;
+      dispatch({
+        type: DataFetchConstants.RESET_STATE,
+        payload: {
+          data: null,
+        },
+      });
     }
-    // args is not included in the dependency array since separate useEffect exists for args change and args and currentPage will not change at the same time.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [asyncFunction, currentPage]);
-
-  useEffect(() => {
-    dispatch({
-      type: DataFetchConstants.RESET_STATE,
-      payload: {
-        data: null,
-      },
-    });
-    asyncFunction(...args);
-  }, [dispatch, asyncFunction, args]);
+    if (resetState) {
+      window.scrollTo(0, 0);
+    }
+    prevArgs.current = [...args];
+    asyncFunction(...args, resetState ? 1 : currentPage);
+  }, [dispatch, asyncFunction, args, currentPage]);
 
   useEffect(() => {
     if (collection) {

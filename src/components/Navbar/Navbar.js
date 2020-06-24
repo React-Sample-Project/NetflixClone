@@ -62,16 +62,15 @@ function Navbar() {
             <LeftNavItem>
               <Link to="/tv">TV Shows</Link>
             </LeftNavItem>
-
-            <LeftNavItem>
-              <Link to="/latest">Latest</Link>
-            </LeftNavItem>
             {auth.getUserSession() && (
-              <LeftNavItem>
-                <Link to={{ pathname: "/my-list", search: "?type=movies" }}>
-                  My List
-                </Link>
-              </LeftNavItem>
+              <>
+                <LeftNavItem>
+                  <Link to="/watchlist/movies">My List</Link>
+                </LeftNavItem>
+                <LeftNavItem>
+                  <Link to="/favorite/movies">My Favorites</Link>
+                </LeftNavItem>
+              </>
             )}
           </LeftNav>
           <RightNav>

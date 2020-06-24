@@ -12,7 +12,9 @@ import NetflixSpinner from "./components/NetflixSpinner/NetflixSpinner";
 
 const Home = lazy(() => import("./pages/Home/Home"));
 const Genre = lazy(() => import("./pages/Genre/Genre"));
-const MyList = lazy(() => import("./pages/MyList/MyList"));
+const Personalization = lazy(() =>
+  import("./pages/Personalization/Personalization")
+);
 const Search = lazy(() => import("./pages/Search/Search"));
 const NotFound = lazy(() => import("./pages/NotFound/NotFound"));
 const Auth = lazy(() => import("./pages/Auth/Auth"));
@@ -23,19 +25,19 @@ const ProtectedRoute = lazy(() =>
 function App() {
   const pages = [
     {
-      route: "/my-list",
-      component: MyList,
+      route: "/:account(watchlist|favorite)+/:mediaType",
+      component: Personalization,
     },
     {
       route: "/search",
       component: Search,
     },
     {
-      route: "/:type(tv|movie)?",
+      route: "/:type(tv|movie)+",
       component: Home,
     },
     {
-      route: "/:type(tv|movie)?/genre/:id",
+      route: "/:type(tv|movie)+/genre/:id",
       component: Genre,
     },
   ];

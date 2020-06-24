@@ -14,7 +14,8 @@ const ProtectedRoute = ({ children, ...rest }) => {
           <Redirect to={{ pathname: "/", state: { from: pathname } }} />
         );
         return isAuthenticated === true ? (
-          pathname === "/my-list" && auth.getGuestSession() ? (
+          ["watchlist", "favorite"].includes(pathname.split("/")[1]) &&
+          auth.getGuestSession() ? (
             RedirectComponent
           ) : (
             children

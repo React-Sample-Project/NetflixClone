@@ -13,8 +13,7 @@ function SearchBox() {
   const [searchValue, setSearchValue] = useState("");
   const pathRef = useRef(null);
   const history = useHistory();
-  const { pathname } = useLocation();
-
+  const { pathname, state } = useLocation();
   useEffect(() => {
     if (!pathname.includes("search")) {
       !inputFocused && setInputShown(false);
@@ -32,9 +31,12 @@ function SearchBox() {
         ? {
             pathname: `/search`,
             search: `?q=${value}`,
-            state: { type: "movie" },
+            state: { ...state, type: "movie" },
           }
-        : pathRef.current
+        : {
+            pathname: pathRef.current,
+            state: { ...state },
+          }
     );
     if (!value) {
       pathRef.current = null;

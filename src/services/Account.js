@@ -20,13 +20,16 @@ const account = {
 
   updateAccountStates: async (mediaId, mediaType, keyName, value) => {
     const { id } = account.getUserInfo();
+    const extractedMediaType = mediaType.includes("movie")
+      ? "movie"
+      : mediaType;
     if (id) {
       const response = await API({
         url: `account/${id}/${keyName}`,
         method: "POST",
         isSessionRequired: true,
         data: {
-          media_type: mediaType,
+          media_type: extractedMediaType,
           media_id: mediaId,
           [keyName]: value,
         },
@@ -35,11 +38,11 @@ const account = {
     }
   },
 
-  getWatchList: async (type) => {
+  getUserPersonalization: async (type, infoType) => {
     const { id } = account.getUserInfo();
     if (id) {
       const media = await API({
-        url: `account/${id}/watchlist/${type}`,
+        url: `account/${id}/${infoType}/${type}`,
         isSessionRequired: true,
       });
       return formatResponse(media);

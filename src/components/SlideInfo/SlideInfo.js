@@ -1,7 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
 
 import useFetch from "../../hooks/useFetch";
-import useQuery from "../../hooks/useQuery";
 
 import { useParams, useLocation } from "react-router-dom";
 import {
@@ -22,10 +21,9 @@ import OverviewGenreList from "../OverviewGenreList/OverviewGenreList";
 import auth from "../../services/Auth";
 
 function SlideInfo({ title, image, id, ...otherProps }) {
-  const { type } = useParams();
-  const q = useQuery();
+  const { type, mediaType: infoType } = useParams();
   const { state } = useLocation();
-  const mediaType = type || q.get("type") || state.type;
+  const mediaType = type || infoType || state.type;
   const fetchRef = useRef(false);
 
   const onMouseEnter = () => {
@@ -79,7 +77,7 @@ function SlideInfo({ title, image, id, ...otherProps }) {
           ? false
           : true
         : false;
-    await account.updateAccountStates(id, type, keyName, newValue);
+    await account.updateAccountStates(id, mediaType, keyName, newValue);
     setAccState({
       ...accState,
       [keyName]: newValue,
