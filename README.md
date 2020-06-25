@@ -9,8 +9,8 @@ https://videoflix.netlify.app/
 
 ## Technologies and libraries used
 
-1. React along with all its moder features (Hooks etc)
-2. TMDB API for the movie information and user authentication & authorization
+1. React along with all its modern features.
+2. TMDB REST API for the movie information and user authentication & authorization.
 3. Styling is done with styled-components library.
 4. Routing is handled using react-router-dom (Version 5 using hooks)
 5. Netflix style carousel is implemented with react-slick
@@ -20,13 +20,13 @@ https://videoflix.netlify.app/
 
 ## Features
 
-1. Login to the application using TMDB's Guest and User account.
+1. User and Guest Auth using TMDB sessions.
 2. Preview of popular movies and TV series for each Genre.
 3. View all the movies and TV series belonging to a particular genre.
 4. TMDB account users can add a particular movie or series to their watch list and favorite list. This feature is not available for guest users.
 5. View the list of movies in Watch list and favorites. (Available for TMDB users only)
-6. Search the movies using the global search.
-7. Lazy loading in all the pages.
+6. Search the vast collection of movies from TMDB using the global search. 
+7. Effective Lazy loading in all the pages.
 
 
 
