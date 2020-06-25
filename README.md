@@ -32,6 +32,7 @@ https://videoflix.netlify.app/
 
 ## Roadmap
 
-Incrementally adding the features present in Netflix
+1. Incrementally adding the features present in Netflix.
+
 
 
