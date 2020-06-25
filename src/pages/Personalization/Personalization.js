@@ -1,11 +1,11 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import Collection from "../../components/Collection/Collection";
 import account from "../../services/Account";
 import { PersonalizationDropdown } from "./Personalization.Styles";
 import { useHistory, useParams } from "react-router-dom";
 function Personalization() {
-  const { account: infoType, mediaType } = useParams();
-  const [type, setType] = useState([mediaType, infoType]);
+  const { account: personalizationType, mediaType } = useParams();
+  const [type, setType] = useState([mediaType, personalizationType]);
   const history = useHistory();
 
   const options = [
@@ -19,25 +19,24 @@ function Personalization() {
     },
   ];
   useEffect(() => {
-    if (mediaType !== type[0] || infoType !== type[1]) {
-      setType([mediaType, infoType]);
+    if (mediaType !== type[0] || personalizationType !== type[1]) {
+      setType([mediaType, personalizationType]);
     }
-  }, [infoType, mediaType, type]);
-  const onResultsChange = useCallback((results) => {
-    console.log(results);
-  }, []);
+  }, [personalizationType, mediaType, type]);
+
   const onDropdownChange = ({ value }) => {
-    setType([value, infoType]);
+    setType([value, personalizationType]);
     history.push(`${value}`);
   };
   return (
     <div>
       <Collection
         fetchMethod={account.getUserPersonalization}
-        onResultsChange={onResultsChange}
         title={
           <>
-            <span>My {infoType === "watchlist" ? "List" : "Favorites"}</span>
+            <span>
+              My {personalizationType === "watchlist" ? "List" : "Favorites"}
+            </span>
             <PersonalizationDropdown
               style={{ display: "inline-block" }}
               options={options}

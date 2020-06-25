@@ -1,5 +1,6 @@
 import API from "./API";
 import { formatResponse } from "./Media";
+import { getCorrectedMediaType } from "../utils";
 
 const localStorage = window.localStorage;
 
@@ -20,9 +21,7 @@ const account = {
 
   updateAccountStates: async (mediaId, mediaType, keyName, value) => {
     const { id } = account.getUserInfo();
-    const extractedMediaType = mediaType.includes("movie")
-      ? "movie"
-      : mediaType;
+    const extractedMediaType = getCorrectedMediaType(mediaType);
     if (id) {
       const response = await API({
         url: `account/${id}/${keyName}`,
@@ -49,20 +48,7 @@ const account = {
     }
   },
 
-  getMediaInfo: async (mediaType, mediaId) => {
-    if (mediaId && mediaType) {
-      const extractedMediaType = mediaType.includes("movie")
-        ? "movie"
-        : mediaType;
-      return await API({
-        url: `${extractedMediaType}/${mediaId}`,
-        isSessionRequired: true,
-        data: {
-          append_to_response: "account_states",
-        },
-      });
-    }
-  },
+
 };
 
 export default account;

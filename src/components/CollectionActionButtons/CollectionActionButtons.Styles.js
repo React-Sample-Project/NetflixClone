@@ -8,7 +8,7 @@ export const CollectionButtonsMain = styled.div`
   align-items: flex-end;
   font-size: 1.35rem;
 `;
-export const SVGButton = styled.a`
+export const SVGButton = styled.span`
   pointer-events: auto;
   display: flex;
   width: 0.6em;

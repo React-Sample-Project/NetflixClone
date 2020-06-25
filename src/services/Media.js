@@ -1,5 +1,6 @@
 import API from "./API";
 import axios from "axios";
+import { getCorrectedMediaType } from "../utils";
 
 let source;
 export const fetchTrending = async (type) => {
@@ -61,5 +62,18 @@ export const searchCollection = async (query, page = 1) => {
       cancelToken: source.token,
     });
     return formatResponse(collection);
+  }
+};
+
+export const getMediaInfo = async (mediaType, mediaId) => {
+  if (mediaId && mediaType) {
+    const extractedMediaType = getCorrectedMediaType(mediaType);
+    return await API({
+      url: `${extractedMediaType}/${mediaId}`,
+      isSessionRequired: true,
+      data: {
+        append_to_response: "account_states,credits,videos",
+      },
+    });
   }
 };

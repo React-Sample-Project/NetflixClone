@@ -2,7 +2,6 @@ import React, { useRef, useState, useEffect } from "react";
 
 import useFetch from "../../hooks/useFetch";
 
-import { useParams, useLocation } from "react-router-dom";
 import {
   MovieInfoContainer,
   MovieTitle,
@@ -13,27 +12,33 @@ import {
   MovieActionsWrapper,
 } from "./SlideInfo.Styles";
 
+import { convertToHours } from "../../utils";
 import Image from "../Image/Image";
 import CollectionActionButtons from "../CollectionActionButtons/CollectionActionButtons";
 import account from "../../services/Account";
+import { getMediaInfo } from "../../services/Media";
+
 import asyncFetchReducer from "../../store/reducers/AsyncFetch";
 import OverviewGenreList from "../OverviewGenreList/OverviewGenreList";
 import auth from "../../services/Auth";
 
-function SlideInfo({ title, image, id, ...otherProps }) {
-  const { type, mediaType: infoType } = useParams();
-  const { state } = useLocation();
-  const mediaType = type || infoType || state.type;
+function SlideInfo({ title, image, id, mediaType, ...otherProps }) {
   const fetchRef = useRef(false);
-
+  const timeoutRef = useRef(null);
   const onMouseEnter = () => {
-    if (!fetchRef.current) {
-      fetchRef.current = true;
-      getMediaInfo(mediaType, id);
+    const mouseEnterTimeout = timeoutRef.current;
+    if (mouseEnterTimeout) {
+      clearTimeout(mouseEnterTimeout);
     }
+    timeoutRef.current = setTimeout(() => {
+      if (!fetchRef.current) {
+        fetchRef.current = true;
+        getMediaDetails(mediaType, id);
+      }
+    }, 100);
   };
-  const [{ data: mediaInfo, isLoading }, , getMediaInfo] = useFetch(
-    account.getMediaInfo,
+  const [{ data: mediaInfo, isLoading }, , getMediaDetails] = useFetch(
+    getMediaInfo,
     null,
     {
       isResponseFormatted: false,
@@ -56,12 +61,6 @@ function SlideInfo({ title, image, id, ...otherProps }) {
       });
     }
   }, [account_states]);
-
-  const convertToHours = (mins) => {
-    const minutes = mins % 60;
-    const hrs = (mins - minutes) / 60;
-    return hrs + "h " + minutes + "m";
-  };
 
   const toggleAccountStates = async (e) => {
     const name = e.currentTarget.getAttribute("name");

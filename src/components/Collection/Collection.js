@@ -34,9 +34,9 @@ function Collection({ fetchMethod, args, title, onResultsChange }) {
 
   const prevArgs = useRef([...args]);
   useEffect(() => {
-    let resetState = false;
+    let stateReset = false;
     if (prevArgs.current[0] !== args[0]) {
-      resetState = true;
+      stateReset = true;
       dispatch({
         type: DataFetchConstants.RESET_STATE,
         payload: {
@@ -44,11 +44,11 @@ function Collection({ fetchMethod, args, title, onResultsChange }) {
         },
       });
     }
-    if (resetState) {
+    if (stateReset) {
       window.scrollTo(0, 0);
     }
     prevArgs.current = [...args];
-    asyncFunction(...args, resetState ? 1 : currentPage);
+    asyncFunction(...args, stateReset ? 1 : currentPage);
   }, [dispatch, asyncFunction, args, currentPage]);
 
   useEffect(() => {

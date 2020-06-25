@@ -10,6 +10,7 @@ import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
 import NetflixSpinner from "./components/NetflixSpinner/NetflixSpinner";
 
+const Media = lazy(() => import("./pages/Media/Media"));
 const Home = lazy(() => import("./pages/Home/Home"));
 const Genre = lazy(() => import("./pages/Genre/Genre"));
 const Personalization = lazy(() =>
@@ -39,6 +40,10 @@ function App() {
     {
       route: "/:type(tv|movie)+/genre/:id",
       component: Genre,
+    },
+    {
+      route: "/:type(tv|movie)+/:mediaId",
+      component: Media,
     },
   ];
   return (

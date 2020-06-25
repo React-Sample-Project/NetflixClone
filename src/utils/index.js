@@ -38,4 +38,18 @@ export const debounce = (func, wait) => {
   };
 };
 
+export const convertToHours = (mins) => {
+  if (mins) {
+    const minutes = mins % 60;
+    const hrs = (mins - minutes) / 60;
+    return hrs + "h " + minutes + "m";
+  }
+};
+
+export const getStringWithComma = (array) =>
+  array.map(({ name }) => name).join(",");
+
+export const getCorrectedMediaType = (mediaType) =>
+  mediaType.includes("movie") ? "movie" : mediaType;
+
 export const getNumArray = (length = 6) => [...Array(length).keys()];
