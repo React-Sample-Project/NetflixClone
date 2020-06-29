@@ -86,8 +86,8 @@ function SlideInfo({ title, image, id, ...otherProps }) {
     const collectionContainer = actionBtsRef.current;
     // Do not navigate to Media Page when watchlist or favorite is clicked
     if (
-      target !== collectionContainer &&
-      !collectionContainer.contains(target)
+      auth.getGuestSession() ||
+      (target !== collectionContainer && !collectionContainer.contains(target))
     ) {
       history.push(`/${correctedType}/${id}`);
     }
