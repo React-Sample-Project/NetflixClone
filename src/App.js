@@ -49,7 +49,13 @@ function App() {
   return (
     <Router>
       <ScrollToTop />
-      <Suspense fallback={<NetflixSpinner />}>
+      <Suspense
+        fallback={
+          <NetflixSpinner
+            style={{ position: "absolute", top: "50%", bottom: "50%" }}
+          />
+        }
+      >
         <>
           <GlobalStyle />
           <Switch>

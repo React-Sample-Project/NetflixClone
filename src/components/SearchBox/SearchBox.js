@@ -15,6 +15,7 @@ function SearchBox() {
   const history = useHistory();
   const { pathname, state } = useLocation();
   useEffect(() => {
+    // console.log("re-render");
     if (!pathname.includes("search")) {
       !inputFocused && setInputShown(false);
       setSearchValue("");
