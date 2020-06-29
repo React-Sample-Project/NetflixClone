@@ -27,12 +27,13 @@ import { getMediaInfo } from "../../services/Media";
 import {
   faPlus,
   faCheck,
-  faShare,
+  // faShare,
   faThumbsUp,
 } from "@fortawesome/free-solid-svg-icons";
 import { faThumbsUp as regularFaThumpsUp } from "@fortawesome/free-regular-svg-icons";
 
 import useAccountStates from "../../hooks/useAccountStates/useAccountStates";
+import ShareDropdown from "../../components/ShareDropdown/ShareDropdown";
 
 function Media() {
   const { mediaId, type } = useParams();
@@ -82,6 +83,7 @@ function Media() {
     const name = e.currentTarget.getAttribute("name");
     toggleAccState(name, mediaId, type);
   };
+
   return (
     <div>
       {isLoading ? (
@@ -147,21 +149,16 @@ function Media() {
                   ></iframe>
                 </CrewWrapper>
                 <ButtonsWrapper>
-                  <MediaButton>
+                  <MediaButton name="watchlist" onClick={toggleAccountStates}>
                     <CustomActionIcon
-                      name="watchlist"
                       value={myList}
                       isLoading={isAccountStateLoading}
                       trueIcon={faCheck}
                       falseIcon={faPlus}
-                      onClick={toggleAccountStates}
                     />
                     <span>My List</span>
                   </MediaButton>
-                  <MediaButton>
-                    <CustomActionIcon name="share" icon={faShare} />
-                    <span>Share</span>
-                  </MediaButton>
+                  <ShareDropdown />
                 </ButtonsWrapper>
               </MainContainer>
             </MediaInfoContainer>

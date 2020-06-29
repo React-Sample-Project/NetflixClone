@@ -9,9 +9,9 @@ function ActionIcon({
   falseIcon,
   icon,
   className,
-  onClick,
   ...otherProps
 }) {
+  // console.log(otherProps);
   const loadingClass = isLoading && "fa-spin";
 
   return (
@@ -19,7 +19,6 @@ function ActionIcon({
       {...otherProps}
       className={`${className || ""} ${loadingClass || ""}`}
       icon={icon || (isLoading ? faSpinner : value ? trueIcon : falseIcon)}
-      onClick={onClick}
     />
   );
 }

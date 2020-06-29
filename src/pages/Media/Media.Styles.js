@@ -98,8 +98,8 @@ export const MediaButton = styled(Button)`
   color: rgb(24, 24, 24);
   border-radius: 0.3rem;
   font-weight: bold;
-  justify-content: center;
-  height: 60px;
+  padding: 18px;
+  height: 40px;
   font-size: 1.2rem;
 `;
 
