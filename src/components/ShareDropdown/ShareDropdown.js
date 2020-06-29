@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Dropdown from "../../components/Dropdown/Dropdown";
 import {
   FacebookShareButton,
@@ -13,6 +13,7 @@ import "./ShareDropdown.Styles.css";
 function ShareDropdown() {
   const url = window.location.href;
   const title = "I thought you might be interested in this page from Videoflix";
+  const [value, setValue] = useState("Share");
   const items = [
     {
       label: (
@@ -39,6 +40,7 @@ function ShareDropdown() {
   ];
   const onChange = ({ value }) => {
     if (value === "clipboard") {
+      setValue("Copied!");
       copy(url);
     }
   };
@@ -46,7 +48,7 @@ function ShareDropdown() {
     <Dropdown
       options={items}
       controlClassName="dropdowncontrol--share"
-      value="Share"
+      value={value}
       onChange={onChange}
       className="dropdown--share"
       menuClassName="dropdownmenu--share"
