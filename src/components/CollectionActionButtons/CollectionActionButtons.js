@@ -1,59 +1,44 @@
-import React from "react";
+import React, { forwardRef } from "react";
 
 import {
   CollectionButtonsMain,
-  ActionIcon,
   SVGCircle,
 } from "./CollectionActionButtons.Styles";
 
-import {
-  faThumbsUp as regularFaThumpsUp,
-  // faThumbsDown as regularFaThumbsDown,
-} from "@fortawesome/free-regular-svg-icons";
+import { faThumbsUp as regularFaThumpsUp } from "@fortawesome/free-regular-svg-icons";
 
-import {
-  faPlus,
-  faCheck,
-  // faThumbsDown,
-  faSpinner,
-  faThumbsUp,
-} from "@fortawesome/free-solid-svg-icons";
+import { faPlus, faCheck, faThumbsUp } from "@fortawesome/free-solid-svg-icons";
 
-function CollectionActionButtons({ accountStates, isLoading, onClick }) {
-  const { watchlist: watched, favorite } = accountStates;
-  const loadingClass = isLoading && "fa-spin";
-  return (
-    <CollectionButtonsMain>
-      <SVGCircle>
-        <ActionIcon
-          icon={
-            isLoading ? faSpinner : favorite ? faThumbsUp : regularFaThumpsUp
-          }
-          onClick={onClick}
-          className={loadingClass}
-          name="favorite"
-        />
-      </SVGCircle>
-      {/* {!favorite && (
+import ActionIcon from "../ActionIcon";
+
+const CollectionActionButtons = forwardRef(
+  ({ accountStates, isLoading, onClick, loadingIconType }, ref) => {
+    const { watchlist: watched, favorite } = accountStates;
+    return (
+      <CollectionButtonsMain ref={ref}>
         <SVGCircle>
           <ActionIcon
-            icon={isLoading ? faSpinner : regularFaThumbsDown}
-            className={loadingClass}
+            isLoading={isLoading || loadingIconType === "favorite"}
+            value={favorite}
+            trueIcon={faThumbsUp}
+            falseIcon={regularFaThumpsUp}
             onClick={onClick}
-            name="unfavorite"
+            name="favorite"
           />
         </SVGCircle>
-      )} */}
-      <SVGCircle>
-        <ActionIcon
-          icon={isLoading ? faSpinner : watched ? faCheck : faPlus}
-          className={loadingClass}
-          onClick={onClick}
-          name="watchlist"
-        />
-      </SVGCircle>
-    </CollectionButtonsMain>
-  );
-}
+        <SVGCircle>
+          <ActionIcon
+            isLoading={isLoading || loadingIconType === "watchlist"}
+            value={watched}
+            trueIcon={faCheck}
+            falseIcon={faPlus}
+            onClick={onClick}
+            name="watchlist"
+          />
+        </SVGCircle>
+      </CollectionButtonsMain>
+    );
+  }
+);
 
 export default CollectionActionButtons;

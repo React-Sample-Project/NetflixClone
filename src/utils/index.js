@@ -26,6 +26,15 @@ export const chunkArrays = (array, chunkLength) => {
   return result;
 };
 
+export const isArraysEqual = (a, b) => {
+  if (a == null || b == null) return false;
+  if (a.length !== b.length) return false;
+  for (var i = 0; i < a.length; ++i) {
+    if (a[i] !== b[i]) return false;
+  }
+  return true;
+};
+
 export const debounce = (func, wait) => {
   let timeout;
   return function (...args) {

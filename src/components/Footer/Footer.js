@@ -12,9 +12,9 @@ import {
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { faLinkedin, faGithub } from "@fortawesome/free-brands-svg-icons";
 import StepsForm from "../StepsForm/StepsForm";
-function Footer() {
+function Footer({ style }) {
   return (
-    <FooterMain>
+    <FooterMain style={style}>
       <FooterLeft>
         Developed By{" "}
         <a

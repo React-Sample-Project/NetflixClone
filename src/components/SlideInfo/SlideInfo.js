@@ -1,4 +1,8 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState } from "react";
+
+import { getCorrectedMediaType } from "../../utils";
+
+import { useHistory, useParams, useLocation } from "react-router-dom";
 
 import useFetch from "../../hooks/useFetch";
 
@@ -10,21 +14,61 @@ import {
   ReleasedYear,
   Duration,
   MovieActionsWrapper,
+  CollectionSlideContainer,
 } from "./SlideInfo.Styles";
 
 import { convertToHours } from "../../utils";
 import Image from "../Image/Image";
 import CollectionActionButtons from "../CollectionActionButtons/CollectionActionButtons";
-import account from "../../services/Account";
 import { getMediaInfo } from "../../services/Media";
 
 import asyncFetchReducer from "../../store/reducers/AsyncFetch";
 import OverviewGenreList from "../OverviewGenreList/OverviewGenreList";
 import auth from "../../services/Auth";
+import useAccountStates from "../../hooks/useAccountStates/useAccountStates";
 
-function SlideInfo({ title, image, id, mediaType, ...otherProps }) {
+function SlideInfo({ title, image, id, ...otherProps }) {
   const fetchRef = useRef(false);
   const timeoutRef = useRef(null);
+  const actionBtsRef = useRef(null);
+
+  const { type, mediaType: infoType } = useParams();
+  const { state } = useLocation();
+  const mediaType = type || infoType || state.type;
+
+  const history = useHistory();
+  const [{ data: mediaInfo, isLoading }, , getMediaDetails] = useFetch(
+    getMediaInfo,
+    null,
+    {
+      isResponseFormatted: false,
+      reducer: asyncFetchReducer,
+    }
+  );
+
+  const correctedType = getCorrectedMediaType(mediaType);
+
+  const {
+    account_states,
+    release_date,
+    first_air_date,
+    seasons,
+    runtime,
+    genres,
+  } = (mediaInfo && mediaInfo.data) || {};
+
+  const [accState, isAccountStateLoading, toggleAccState] = useAccountStates(
+    account_states
+  );
+  const toggleAccountStates = (e) => {
+    const name = e.currentTarget.getAttribute("name");
+    setLoadingIconType(name);
+    toggleAccState(name, id, mediaType);
+  };
+
+  const firstRelease = release_date || first_air_date;
+  const additonalData = runtime || seasons;
+  const [loadingIconType, setLoadingIconType] = useState(null);
   const onMouseEnter = () => {
     const mouseEnterTimeout = timeoutRef.current;
     if (mouseEnterTimeout) {
@@ -37,55 +81,19 @@ function SlideInfo({ title, image, id, mediaType, ...otherProps }) {
       }
     }, 100);
   };
-  const [{ data: mediaInfo, isLoading }, , getMediaDetails] = useFetch(
-    getMediaInfo,
-    null,
-    {
-      isResponseFormatted: false,
-      reducer: asyncFetchReducer,
-    }
-  );
-  const {
-    account_states,
-    release_date,
-    first_air_date,
-    seasons,
-    runtime,
-    genres,
-  } = (mediaInfo && mediaInfo.data) || {};
-  const [accState, setAccState] = useState({});
-  useEffect(() => {
-    if (account_states) {
-      setAccState({
-        ...account_states,
-      });
-    }
-  }, [account_states]);
 
-  const toggleAccountStates = async (e) => {
-    const name = e.currentTarget.getAttribute("name");
-    const keyName = ["favorite", "unfavorite"].includes(name)
-      ? "favorite"
-      : "watchlist";
-    const value = accState[keyName];
-    const newValue =
-      name === "watchlist"
-        ? !value
-        : name === "favorite"
-        ? value
-          ? false
-          : true
-        : false;
-    await account.updateAccountStates(id, mediaType, keyName, newValue);
-    setAccState({
-      ...accState,
-      [keyName]: newValue,
-    });
+  const onClick = ({ target }) => {
+    const collectionContainer = actionBtsRef.current;
+    // Do not navigate to Media Page when watchlist or favorite is clicked
+    if (
+      target !== collectionContainer &&
+      !collectionContainer.contains(target)
+    ) {
+      history.push(`/${correctedType}/${id}`);
+    }
   };
-  const firstRelease = release_date || first_air_date;
-  const additonalData = runtime || seasons;
   return (
-    <>
+    <CollectionSlideContainer onClick={onClick}>
       <Image
         onMouseEnter={onMouseEnter}
         className="blurimg-on-hover"
@@ -115,6 +123,8 @@ function SlideInfo({ title, image, id, mediaType, ...otherProps }) {
         {auth.getUserSession() && (
           <MovieActionsWrapper>
             <CollectionActionButtons
+              ref={actionBtsRef}
+              loadingIconType={isAccountStateLoading ? loadingIconType : null}
               isLoading={isLoading}
               accountStates={accState}
               onClick={toggleAccountStates}
@@ -122,7 +132,7 @@ function SlideInfo({ title, image, id, mediaType, ...otherProps }) {
           </MovieActionsWrapper>
         )}
       </MovieInfoContainer>
-    </>
+    </CollectionSlideContainer>
   );
 }
 

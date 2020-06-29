@@ -24,6 +24,13 @@ function StepsForm() {
     }));
   };
 
+  const onKeyDown = (e) => {
+    // If Enter key is presed triggered next step.
+    if (e.keyCode === 13) {
+      onClick(e);
+    }
+  };
+
   const onClick = () => setCurrentStep((step) => step + 1);
 
   const steps = [
@@ -47,6 +54,7 @@ function StepsForm() {
       <CustomInput
         value={value}
         onChange={onChange}
+        onKeyDown={onKeyDown}
         name={name}
         placeholder={placeholder}
         tabIndex="0"
@@ -72,7 +80,9 @@ function StepsForm() {
   }, [currentStep, info, steps.length]);
 
   useEffect(() => {
-    document.activeElement.previousElementSibling.focus();
+    const element =
+      document.activeElement.previousElementSibling || document.activeElement;
+    element.focus();
   }, [currentStep]);
 
   return (

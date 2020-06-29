@@ -42,7 +42,7 @@ function Auth() {
           </AuthBodyWrapper>
         </div>
       </AuthBody>
-      <Footer />
+      <Footer style={{ position: "fixed", bottom: "0px" }} />
     </AuthContainer>
   ) : null;
   // );

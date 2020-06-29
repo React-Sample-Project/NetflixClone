@@ -67,3 +67,9 @@ export const Duration = styled.span`
   margin-right: 0.5em;
   margin-left: 0.2em;
 `;
+
+export const CollectionSlideContainer = styled.div`
+  height: 100%;
+  cursor: pointer;
+  width: 100%;
+`;

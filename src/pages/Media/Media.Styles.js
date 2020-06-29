@@ -1,4 +1,7 @@
 import styled from "styled-components";
+import Button from "../../components/Button";
+import { default as ActionButton } from "../../components/ActionIcon";
+import { SVGCircle } from "../../components/CollectionActionButtons/CollectionActionButtons.Styles";
 
 export const BackgroundCover = styled.div`
   background-size: cover;
@@ -43,6 +46,7 @@ export const MediaTitle = styled.h1`
   font-size: 35px;
   line-height: 36px;
   height: fit-content;
+  padding-right: 10px;
 `;
 
 export const ExtraInfo = styled.div`
@@ -68,6 +72,15 @@ export const CrewWrapper = styled.div`
   display: flex;
 `;
 
+export const ButtonsWrapper = styled.div`
+  flex-direction: row;
+  flex-wrap: wrap;
+  display: flex;
+  && {
+    margin-top: 30px;
+  }
+`;
+
 export const Crew = styled.div`
   display: flex;
   flex-direction: column;
@@ -79,4 +92,36 @@ export const CrewRow = styled.div`
 `;
 export const CrewLabel = styled.span`
   padding-right: 30px;
+`;
+
+export const MediaButton = styled(Button)`
+  color: rgb(24, 24, 24);
+  border-radius: 0.3rem;
+  font-weight: bold;
+  justify-content: center;
+  height: 60px;
+  font-size: 1.2rem;
+`;
+
+export const CustomActionIcon = styled(ActionButton)`
+  && {
+    padding-right: 10px;
+    color: #333;
+    fill: #333;
+  }
+`;
+
+export const CustomSVGCircle = styled(SVGCircle)`
+  width: 1.6em;
+  height: 1.6em;
+`;
+
+export const TitleWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  padding-right: 10px;
+`;
+
+export const ActionIcon = styled(ActionButton)`
+  padding-bottom: 4px;
 `;

@@ -6,9 +6,7 @@ export const FooterMain = styled.div`
   margin-top: 0;
   margin: 0;
   padding: 0;
-  position: relative;
   vertical-align: bottom;
-  min-height: 237px;
   min-width: 190px;
   width: 100%;
   display: flex;
@@ -50,7 +48,7 @@ export const ConnectionIcons = styled.div`
 export const FooterCenter = styled.div`
   text-align: center;
   font-size: 20px;
-  margin-top:20px;
+  margin-top: 20px;
   font-weight: bold;
 `;
 

@@ -3,7 +3,7 @@ import CollectionSlider from "../CollectionSlider/CollectionSlider";
 import useScroll from "../../hooks/useScroll";
 import useFetch from "../../hooks/useFetch";
 
-import { chunkArrays, isBottom } from "../../utils";
+import { chunkArrays, isBottom, isArraysEqual } from "../../utils";
 import "./Collection.Styles.css";
 import { DataFetchConstants } from "../../store/reducers/AsyncFetchArray";
 import { Header, HeaderText } from "./Collection.Styles";
@@ -35,7 +35,7 @@ function Collection({ fetchMethod, args, title, onResultsChange }) {
   const prevArgs = useRef([...args]);
   useEffect(() => {
     let stateReset = false;
-    if (prevArgs.current[0] !== args[0]) {
+    if (!isArraysEqual(prevArgs.current, args)) {
       stateReset = true;
       dispatch({
         type: DataFetchConstants.RESET_STATE,
