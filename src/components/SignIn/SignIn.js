@@ -16,6 +16,7 @@ import {
   SignInLabelWrapper,
 } from "./SignIn.Styles";
 import { useHistory } from "react-router-dom";
+import { analytics } from "../../analytics/analytics";
 // import GoogleRecaptcha from "../GoogleRecaptcha/GoogleRecaptcha";
 
 function SignIn() {
@@ -102,6 +103,10 @@ function SignIn() {
 
   const signIn = async (evObj) => {
     evObj.preventDefault();
+    analytics.addEvent({
+      category: "Sign In Button",
+      action: "User pressed the Sign in button",
+    });
     // try {
     // const token = await recapchaRef.current.executeAsync();
     // auth.verifyGoogleCaptcha(token);
