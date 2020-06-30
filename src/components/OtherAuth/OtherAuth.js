@@ -1,6 +1,6 @@
 import React from "react";
 import GuestAuth from "../GuestAuth/GuestAuth";
-
+import { analytics } from "../../analytics";
 import {
   OtherAuthContainer,
   SignUpContainer,
@@ -9,12 +9,23 @@ import {
 } from "./OtherAuth.Styles";
 
 function OtherAuth() {
+  const signUpClick = () => {
+    analytics.addEvent({
+      category: "Sign up",
+      action: "User pressed Sign up button",
+    });
+  };
   return (
     <OtherAuthContainer>
       <GuestAuth />
       <SignUpContainer>
         New to Movieflix?{" "}
-        <a href="https://www.themoviedb.org/account/signup">Sign up now</a>
+        <a
+          href="https://www.themoviedb.org/account/signup"
+          onClick={signUpClick}
+        >
+          Sign up now
+        </a>
       </SignUpContainer>
       <RecaptchaContainer style={{ display: "none" }}>
         <p>

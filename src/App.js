@@ -1,6 +1,6 @@
 import React, { lazy, Suspense } from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-
+import { BrowserRouter, Route, Switch, Router } from "react-router-dom";
+import { history } from "./analytics";
 import GlobalStyle from "./Global.Styles";
 import { Main, MainView } from "./App.Styles";
 
@@ -47,47 +47,49 @@ function App() {
     },
   ];
   return (
-    <Router>
-      <ScrollToTop />
-      <Suspense
-        fallback={
-          <NetflixSpinner
-            style={{ position: "absolute", top: "50%", bottom: "50%" }}
-          />
-        }
-      >
-        <>
-          <GlobalStyle />
-          <Switch>
-            <Route exact path="/">
-              <Auth />
-            </Route>
-            {/* <Route> */}
-            <>
-              <div>
+    <Router history={history}>
+      <BrowserRouter>
+        <ScrollToTop />
+        <Suspense
+          fallback={
+            <NetflixSpinner
+              style={{ position: "absolute", top: "50%", bottom: "50%" }}
+            />
+          }
+        >
+          <>
+            <GlobalStyle />
+            <Switch>
+              <Route exact path="/">
+                <Auth />
+              </Route>
+              {/* <Route> */}
+              <>
                 <div>
-                  <Main>
-                    {/** Navbar is kept outside to prevent re-rendering of Navbar on protected route change */}
-                    <Navbar />
-                    {pages.map((page, index) => (
-                      <ProtectedRoute key={index} exact path={page.route}>
-                        <MainView>
-                          <page.component />
-                        </MainView>
-                      </ProtectedRoute>
-                    ))}
-                    <Footer />
-                  </Main>
+                  <div>
+                    <Main>
+                      {/** Navbar is kept outside to prevent re-rendering of Navbar on protected route change */}
+                      <Navbar />
+                      {pages.map((page, index) => (
+                        <ProtectedRoute key={index} exact path={page.route}>
+                          <MainView>
+                            <page.component />
+                          </MainView>
+                        </ProtectedRoute>
+                      ))}
+                      <Footer />
+                    </Main>
+                  </div>
                 </div>
-              </div>
-            </>
-            {/* </Route> */}
-            <Route>
-              <NotFound />
-            </Route>
-          </Switch>
-        </>
-      </Suspense>
+              </>
+              {/* </Route> */}
+              <Route>
+                <NotFound />
+              </Route>
+            </Switch>
+          </>
+        </Suspense>
+      </BrowserRouter>
     </Router>
   );
 }

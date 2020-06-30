@@ -5,10 +5,16 @@ import { faUser } from "@fortawesome/free-solid-svg-icons";
 
 import { GuestButton, GuestIcon, GuestText } from "./GuestAuth.Styles";
 
+import { analytics } from "../../analytics";
+
 function GuestAuth() {
   const history = useHistory();
   const createSession = async (e) => {
     e.preventDefault();
+    analytics.addEvent({
+      category: "Guest Session Creation",
+      action: "User pressed Sign in as Guest",
+    });
     const { success } = await auth.createGuestSession();
     if (success) {
       history.push("/movie");
