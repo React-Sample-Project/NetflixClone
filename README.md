@@ -28,7 +28,7 @@ https://videoflix.netlify.app/
 5. View the list of movies in Watch list and favorites. (Available for TMDB users only)
 6. Search the vast collection of movies from TMDB using the global search. 
 7. Effective Lazy loading in all the pages.
-8. View Information about a particular media (Cast, Crew, Trailer etc) by clicking them. 
+8. View Information about a particular media (Cast, Crew, Trailer etc) by clicking on the individual media from the preview. 
 9. Share the page via Whatsapp, Facebook etc.
 
 
