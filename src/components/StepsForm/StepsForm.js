@@ -81,7 +81,7 @@ function StepsForm() {
 
   useEffect(() => {
     const element =
-      document.activeElement.previousElementSibling || document.activeElement;
+      document.activeElement.previousElementSibling ?? document.activeElement;
     element.focus();
   }, [currentStep]);
 

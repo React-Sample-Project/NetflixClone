@@ -55,7 +55,7 @@ function SlideInfo({ title, image, id, ...otherProps }) {
     seasons,
     runtime,
     genres,
-  } = (mediaInfo && mediaInfo.data) || {};
+  } = mediaInfo?.data ?? {};
 
   const [accState, isAccountStateLoading, toggleAccState] = useAccountStates(
     account_states

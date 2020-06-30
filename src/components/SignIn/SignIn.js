@@ -70,7 +70,7 @@ function SignIn() {
   };
 
   const handleFocus = ({ type, target: { name } }) => {
-    const newValue = type === "focus" ? true : false;
+    const newValue = type === "focus";
     if (newValue !== isFocused[name]) {
       setFocused((old) => ({
         ...old,
@@ -141,7 +141,7 @@ function SignIn() {
                 value={username}
                 tabIndex="0"
                 id="userName"
-                autoComplete="email"
+                autoComplete="username"
                 onFocus={handleFocus}
                 onBlur={handleFocus}
                 onChange={onChange}

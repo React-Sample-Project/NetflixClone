@@ -49,7 +49,7 @@ function Media() {
     getMediaDetails(type, mediaId);
   }, [getMediaDetails, type, mediaId]);
 
-  const mediaData = mediaInfo && mediaInfo.data;
+  const mediaData = mediaInfo?.data;
   const {
     original_title,
     original_name,
@@ -65,20 +65,18 @@ function Media() {
     account_states,
   } = mediaData || {};
 
-  const additonalData =
-    convertToHours(runtime) || (seasons && seasons.length + " Seasons");
+  const additonalData = convertToHours(runtime) || seasons?.length + " Seasons";
   const firstAirDate = release_date || first_air_date;
-  const directorObj =
-    credits && credits.crew.find(({ job }) => job === "Director");
-  const director = directorObj && directorObj.name;
-  const casts = credits && credits.cast.slice(0, 5);
-  const trailerId = videos && videos.results && videos.results[0].key;
+  const directorObj = credits?.crew.find(({ job }) => job === "Director");
+  const director = directorObj?.name;
+  const casts = credits?.cast.slice(0, 5);
+  const trailerId = videos?.results && videos.results[0].key;
 
   const [accState, isAccountStateLoading, toggleAccState] = useAccountStates(
     account_states
   );
-  const myList = accState && accState.watchlist;
-  const favorite = accState && accState.favorite;
+  const myList = accState?.watchlist;
+  const favorite = accState?.favorite;
   const toggleAccountStates = (e) => {
     const name = e.currentTarget.getAttribute("name");
     toggleAccState(name, mediaId, type);

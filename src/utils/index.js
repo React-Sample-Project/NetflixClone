@@ -6,7 +6,7 @@ export const generateLoadingItems = () => [
 ];
 
 export const isBottom = (element) =>
-  element && element.getBoundingClientRect().bottom <= window.innerHeight + 400;
+  element?.getBoundingClientRect().bottom <= window.innerHeight + 400;
 
 export const isContentOverflown = ({
   clientWidth,

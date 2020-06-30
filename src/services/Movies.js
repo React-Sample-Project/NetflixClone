@@ -15,8 +15,6 @@ export const fetchAllVideos = async (movieId) => {
 export const fetchYoutubeTrailerId = async (movieId) => {
   if (movieId) {
     const videos = await fetchAllVideos(movieId);
-    if (videos.length) {
-      return videos[0].key;
-    }
+    return videos?.[0].key;
   }
 };

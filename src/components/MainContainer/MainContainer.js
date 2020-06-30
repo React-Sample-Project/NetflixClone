@@ -76,7 +76,7 @@ function MainContainer() {
   ]);
 
   const slicedGenres = useInfiniteScroll({
-    array: genres && genres.data,
+    array: genres?.data,
     type,
     sliceLength: 3,
     elementRef: collectionRef.current,
@@ -89,7 +89,7 @@ function MainContainer() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [slicedGenres, getCollections]);
 
-  const trendingAllDay = trending && trending.data.slice(0, 5);
+  const trendingAllDay = trending?.data.slice(0, 5);
 
   return (
     <Main ref={collectionRef}>
