@@ -16,6 +16,7 @@ https://videoflix.netlify.app/
 5. Netflix style carousel is implemented with react-slick
 6. Font Awesome icons are used for the icons in the application.
 7. Google Analytics to track website visits. 
+8. Netlify is used for continuous Deployment.
 
 
 
