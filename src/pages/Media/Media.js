@@ -69,8 +69,8 @@ function Media() {
   const firstAirDate = release_date || first_air_date;
   const directorObj = credits?.crew.find(({ job }) => job === "Director");
   const director = directorObj?.name;
-  const casts = credits?.cast.slice(0, 5);
-  const trailerId = videos?.results && videos.results[0].key;
+  const casts = credits?.cast?.slice(0, 5);
+  const trailerId = videos?.results?.[0]?.key;
 
   const [accState, isAccountStateLoading, toggleAccState] = useAccountStates(
     account_states
@@ -136,15 +136,17 @@ function Media() {
                       </CrewRow>
                     ))}
                   </Crew>
-                  <iframe
-                    width="560"
-                    title="test"
-                    height="315"
-                    src={`https://www.youtube.com/embed/${trailerId}?controls=0`}
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                  ></iframe>
+                  {trailerId && (
+                    <iframe
+                      width="560"
+                      title="test"
+                      height="315"
+                      src={`https://www.youtube.com/embed/${trailerId}?controls=0`}
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    ></iframe>
+                  )}
                 </CrewWrapper>
                 <ButtonsWrapper>
                   <MediaButton name="watchlist" onClick={toggleAccountStates}>
