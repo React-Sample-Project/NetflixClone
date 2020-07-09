@@ -14,7 +14,9 @@ https://videoflix.netlify.app/
 3. Styling is done with styled-components library.
 4. Routing is handled using react-router-dom (Version 5 using hooks)
 5. Netflix style carousel is implemented with react-slick
-6. Font Awesome icons are used for the icons in the application
+6. Font Awesome icons are used for the icons in the application.
+7. Google Analytics to track website visits. 
+8. Netlify is used for continuous Deployment.
 
 
 
@@ -27,6 +29,8 @@ https://videoflix.netlify.app/
 5. View the list of movies in Watch list and favorites. (Available for TMDB users only)
 6. Search the vast collection of movies from TMDB using the global search. 
 7. Effective Lazy loading in all the pages.
+8. View Information about a particular media (Cast, Crew, Trailer etc) by clicking on the individual media from the preview. 
+9. Share the page via Whatsapp, Facebook etc.
 
 
 
