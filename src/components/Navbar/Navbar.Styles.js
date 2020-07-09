@@ -1,4 +1,6 @@
 import styled, { css } from "styled-components";
+import { Link } from "react-router-dom";
+import { ReactComponent as NetflixLogo } from "../../assets/netflix.svg";
 
 const NavOnScroll = css`
   position: fixed;
@@ -35,20 +37,37 @@ export const MainNav = styled.div`
   display: flex;
   transition: background-color 400ms;
   align-items: center;
-  /**  should be changed with media queries */
-  height: 65px;
-  /**  should be changed with media queries */
-  padding: 0 60px;
-  /** should be changed with media queries */
-  font-size: 14px;
+  height: 41px;
+  @media screen and (min-width: 950px) {
+    height: 68px;
+  }
+  padding: 0 4%;
+  @media screen and (min-width: 1500px) {
+    padding: 0 60px;
+  }
+  font-size: 1.2rem;
+  @media screen and (min-width: 1200px) {
+    font-size: 14px;
+  }
   background-color: ${({ scroll }) =>
     scroll ? "rgb(20, 20, 20)" : "transparent"};
 `;
 
-export const LogoContainer = styled.img`
-  margin-right: 25px;
-  width: 93px;
-  height: 100%;
+export const LogoContainer = styled(Link)`
+  margin-right: 5px;
+  text-decoration: none;
+  vertical-align: middle;
+  fill: #e50914;
+  display: inline-block;
+  fill: #e50914;
+  @media screen and (min-width: 1150px) {
+    margin-right: 25px;
+  }
+`;
+
+export const LogoIcon = styled(NetflixLogo)`
+  vertical-align: middle;
+  height: 2vh;
 `;
 
 export const LeftNav = styled.ul`
@@ -59,9 +78,11 @@ export const LeftNav = styled.ul`
 `;
 
 export const LeftNavMenu = styled.li`
-  display: none;
-  /** should be changed with media queries */
-  margin-left: 20px;
+  @media screen and (min-width: 885px) {
+    display: none;
+  }
+  display: block;
+  margin-left: 18px;
   list-style-type: none;
 `;
 
@@ -73,11 +94,15 @@ export const LeftNavMenuTrigger = styled.a`
 `;
 
 export const LeftNavItem = styled.li`
-  /** should be changed with media queries */
-  display: block;
+  display: none;
   list-style-type: none;
-  /** should be changed with media queries */
-  margin-left: 20px;
+  margin-left: 18px;
+  @media screen and (min-width: 1330px) {
+    margin-left: 20px;
+  }
+  @media screen and (min-width: 885px) {
+    display: block;
+  }
 `;
 
 export const RightNav = styled.div`
@@ -88,18 +113,26 @@ export const RightNav = styled.div`
   position: absolute;
   top: 0;
   height: 100%;
-  /** should be changed with media queries */
-  right: 60px;
+  right: 4%;
+  @media screen and (min-width: 1500px) {
+    right: 60px;
+  }
 `;
 
 export const RightNavItem = styled.div`
-  /** should be changed with media queries */
-  margin-right: 20px;
+  &:not(:last-child) {
+    margin-right: 15px;
+  }
+  @media screen and (min-width: 1330px) {
+    &:not(:last-child) {
+      margin-right: 20px;
+    }
+  }
 `;
 
 export const NavIcon = styled.div`
   vertical-align: middle;
-  font-size: 1.3em;
+  font-size: 1.5em;
   font-weight: bold;
   color: #fff;
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);

@@ -1,21 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBell } from "@fortawesome/free-solid-svg-icons";
-
-import Logo from "../../assets/netflixLogo.png";
-
+import { useHistory } from "react-router-dom";
 import UserInfo from "../UserInfo";
 import SearchBox from "../SearchBox";
 
 import auth from "../../services/Auth";
+import Menu from "../Menu";
 
 import useWindowScrollPosition from "@rehooks/window-scroll-position";
 import {
   NavContainer,
   NavInner,
   MainNav,
-  LogoContainer,
   LeftNav,
   LeftNavMenu,
   LeftNavMenuTrigger,
@@ -23,8 +21,11 @@ import {
   RightNav,
   RightNavItem,
   NavIcon,
+  LogoContainer,
+  LogoIcon,
 } from "./Navbar.Styles.js";
 import useAuth from "../../hooks/useAuth/useAuth";
+import DownArrowIcon from "../DownArrowIcon/DownArrowIcon";
 
 function Navbar() {
   const scrollOptions = {
@@ -32,46 +33,71 @@ function Navbar() {
   };
   const changePosition = 1;
   const [scroll, setScroll] = useState(false);
+  const history = useHistory();
   const { y } = useWindowScrollPosition(scrollOptions);
+  const browseRef = useRef(null);
   if (y > changePosition && !scroll) {
     setScroll(true);
   }
   if (y <= changePosition && scroll) {
     setScroll(false);
   }
+  const items = [
+    {
+      key: 1,
+      value: "Movies",
+      to: "/movie",
+    },
+    {
+      key: 2,
+      value: "TV Shows",
+      to: "/tv",
+    },
+  ];
+  if (auth.getUserSession()) {
+    items.push(
+      ...[
+        {
+          key: 3,
+          value: "My List",
+          to: "/watchlist/movies",
+        },
+        {
+          key: 4,
+          value: "My Favorites",
+          to: "/favorite/movies",
+        },
+      ]
+    );
+  }
   const [isAuthenticated] = useAuth();
+  const switchToRoute = ({ to }) => {
+    history.push(to);
+  };
   return (
     <NavContainer>
       <NavInner scroll={scroll}>
         <MainNav scroll={scroll}>
-          <Link to="/">
-            <LogoContainer src={Logo} alt="logo" />
-          </Link>
+          <LogoContainer to="/movie">
+            <LogoIcon />
+          </LogoContainer>
           <LeftNav>
-            <LeftNavMenu>
+            <LeftNavMenu ref={browseRef}>
               <LeftNavMenuTrigger role="button" tabIndex="0">
                 Browse
+                <DownArrowIcon />
               </LeftNavMenuTrigger>
+              <Menu
+                items={items}
+                refNode={browseRef?.current}
+                onSelect={switchToRoute}
+              />
             </LeftNavMenu>
-            {/* <LeftNavItem>
-              <Link to="/">Home</Link>
-            </LeftNavItem> */}
-            <LeftNavItem>
-              <Link to="/movie">Movies</Link>
-            </LeftNavItem>
-            <LeftNavItem>
-              <Link to="/tv">TV Shows</Link>
-            </LeftNavItem>
-            {auth.getUserSession() && (
-              <>
-                <LeftNavItem>
-                  <Link to="/watchlist/movies">My List</Link>
-                </LeftNavItem>
-                <LeftNavItem>
-                  <Link to="/favorite/movies">My Favorites</Link>
-                </LeftNavItem>
-              </>
-            )}
+            {items.map(({ key, value, to }) => (
+              <LeftNavItem key={key}>
+                <Link to={to}> {value} </Link>
+              </LeftNavItem>
+            ))}
           </LeftNav>
           <RightNav>
             <RightNavItem>
@@ -79,7 +105,7 @@ function Navbar() {
             </RightNavItem>
             <RightNavItem>
               <NavIcon>
-                <FontAwesomeIcon icon={faBell} style={{ width: "auto" }} />
+                <FontAwesomeIcon icon={faBell} />
               </NavIcon>
             </RightNavItem>
             <RightNavItem>{isAuthenticated && <UserInfo />} </RightNavItem>

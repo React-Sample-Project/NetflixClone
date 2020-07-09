@@ -1,8 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 
-import { SearchBoxMain } from "./SearchBox.Styles";
-import { NavIcon } from "../Navbar/Navbar.Styles";
+import { SearchBoxMain, SearchIconWrapper } from "./SearchBox.Styles";
 
 import SearchInput from "../SearchInput";
 import SearchIcon from "../SearchIcon/SearchIcon";
@@ -66,14 +65,9 @@ function SearchBox() {
           focused={inputFocused}
         />
       ) : (
-        <NavIcon
-          as="button"
-          style={{ border: "none", outline: "none" }}
-          tabIndex="0"
-          onClick={onButtonClick}
-        >
+        <SearchIconWrapper as="button" tabIndex="0" onClick={onButtonClick}>
           <SearchIcon />
-        </NavIcon>
+        </SearchIconWrapper>
       )}
     </SearchBoxMain>
   );

@@ -12,10 +12,10 @@ import {
   AuthBody,
   AuthBackground,
   AuthHeader,
-  Logo,
-  LogoLink,
 } from "./Auth.Styles";
 import { Redirect } from "react-router-dom";
+import Logo from "../../components/Logo";
+
 import Footer from "../../components/Footer";
 import useAuth from "../../hooks/useAuth/useAuth";
 
@@ -34,9 +34,7 @@ function Auth() {
         />
       </AuthBackground>
       <AuthHeader>
-        <LogoLink to="/">
-          <Logo />
-        </LogoLink>
+        <Logo path="/" />
       </AuthHeader>
       <AuthBody>
         <div>

@@ -4,7 +4,7 @@ export default createGlobalStyle`
 
 body {
     font-family: 'Heebo', sans-serif;
-    font-size: 10px;
+    font-size: 13px;
     cursor: default;
     background: #141414;
     color: #fff;
@@ -16,6 +16,12 @@ body {
   html,
   body {
     font-size: 0.75vw;
+  }
+}
+
+@media screen and (max-aspect-ratio: 4/3) and (max-width: 480px) and (min-width: 0) {
+  body, html {
+    font-size: 1.5vw;
   }
 }
 

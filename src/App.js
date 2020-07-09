@@ -1,6 +1,5 @@
 import React, { lazy, Suspense } from "react";
 import { BrowserRouter, Route, Switch, Router } from "react-router-dom";
-import { history } from "./analytics";
 import GlobalStyle from "./Global.Styles";
 import { Main, MainView } from "./App.Styles";
 
@@ -9,6 +8,7 @@ import Footer from "./components/Footer";
 
 import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
 import NetflixSpinner from "./components/NetflixSpinner/NetflixSpinner";
+import { history } from "./analytics";
 
 const Media = lazy(() => import("./pages/Media/Media"));
 const Home = lazy(() => import("./pages/Home/Home"));
@@ -53,7 +53,13 @@ function App() {
         <Suspense
           fallback={
             <NetflixSpinner
-              style={{ position: "absolute", top: "50%", bottom: "50%" }}
+              style={{
+                position: "absolute",
+                top: "50%",
+                bottom: "50%",
+                left: "50%",
+                right: "50%",
+              }}
             />
           }
         >

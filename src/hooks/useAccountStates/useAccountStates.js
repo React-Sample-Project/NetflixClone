@@ -5,7 +5,7 @@ import useFetch from "../../hooks/useFetch";
 import account from "../../services/Account";
 
 function useAccountStates(accountStates) {
-  const [{ data, isLoading }, , updateAccountStates] = useFetch(
+  const [{ isLoading }, , updateAccountStates] = useFetch(
     account.updateAccountStates,
     null,
     {
@@ -13,7 +13,6 @@ function useAccountStates(accountStates) {
       reducer: asyncFetchReducer,
     }
   );
-  console.log(data);
   const [accState, setAccState] = useState({});
   useEffect(() => {
     if (accountStates) {

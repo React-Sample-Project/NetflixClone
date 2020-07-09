@@ -23,7 +23,7 @@ export const FooterLeft = styled.div`
   margin: 20px;
   flex-grow: 1;
   font-size: 20px;
-  @media screen and (max-width: 440px) {
+  @media screen and (max-width: 700px) {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -52,7 +52,7 @@ export const ConnectionIcons = styled.div`
 `;
 
 export const FooterCenter = styled.div`
-  @media screen and (max-width: 440px) {
+  @media screen and (max-width: 700px) {
     display: none;
   }
   text-align: center;
@@ -62,7 +62,7 @@ export const FooterCenter = styled.div`
 `;
 
 export const FooterRight = styled.div`
-  @media screen and (max-width: 440px) {
+  @media screen and (max-width: 700px) {
     display: none;
   }
   align-items: flex-start;
