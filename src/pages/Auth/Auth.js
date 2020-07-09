@@ -27,7 +27,11 @@ function Auth() {
     // return (
     <AuthContainer>
       <AuthBackground>
-        <img src={Cover} alt="loginCover" />
+        <img
+          src={Cover}
+          alt="loginCover"
+          style={{ minHeight: "100%", minWidth: "100%" }}
+        />
       </AuthBackground>
       <AuthHeader>
         <LogoLink to="/">

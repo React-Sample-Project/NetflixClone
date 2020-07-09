@@ -3,6 +3,11 @@ import { ReactComponent as NetflixLogo } from "../../assets/netflix.svg";
 import { Link } from "react-router-dom";
 
 export const Logo = styled(NetflixLogo)`
+  @media screen and (max-width: 440px) {
+    height: 20px;
+    width: 75px;
+    padding-top: 12px;
+  }
   height: 45px;
   width: 167px;
   vertical-align: middle;
@@ -13,10 +18,16 @@ export const LogoLink = styled(Link)`
   vertical-align: middle;
   fill: #e50914;
   display: inline-block;
-  line-height: 90px;
   fill: #e50914;
-  line-height: 90px;
   margin-left: 3%;
+  line-height: 90px;
+  @media screen and (max-width: 700px) {
+    line-height: 75px;
+  }
+  @media screen and (max-width: 440px),
+    screen and (orientation: landscape) and (max-width: 700px) {
+    line-height: 45px;
+  }
 `;
 
 export const AuthContainer = styled.div`
@@ -24,25 +35,31 @@ export const AuthContainer = styled.div`
   color: #fff;
 `;
 export const AuthMain = styled.div`
-  > div {
-    min-height: 100%;
-    margin: 0;
-    padding: 0;
-    position: relative;
-    z-index: 0;
+  @media only screen and (min-width: 740px) {
+    > div {
+      min-height: 100%;
+      margin: 0;
+      padding: 0;
+      position: relative;
+      z-index: 0;
+    }
   }
+  display: none;
 `;
 
 export const AuthBackground = styled.div`
-  background-size: cover;
-  display: block;
-  height: 100%;
-  opacity: 0.5;
-  min-height: 100vh;
-  overflow: hidden;
-  position: absolute;
-  width: 100%;
-  z-index: -1;
+  @media only screen and (min-width: 740px) {
+    background-size: cover;
+    display: block;
+    height: 100%;
+    opacity: 0.5;
+    min-height: 100vh;
+    overflow: hidden;
+    position: absolute;
+    width: 100%;
+    z-index: -1;
+  }
+  display: none;
 `;
 
 export const AuthHeader = styled.div`
