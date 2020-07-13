@@ -1,3 +1,19 @@
 .collection-customization {
     margin-bottom: 4vw;
 }
+
+.collection-customization.slick-slider {
+    padding: 0 4%;
+}
+
+.collection-customization .slick-list {   
+    padding: 0 !important;
+    overflow: unset;
+
+}
+
+@media screen and (min-width: 1500px) {
+    .collection-customization.slick-slider {
+        padding: 0 60px;
+    }
+}

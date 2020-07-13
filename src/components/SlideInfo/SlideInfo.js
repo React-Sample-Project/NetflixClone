@@ -99,7 +99,7 @@ function SlideInfo({ title, image, id, ...otherProps }) {
         className="blurimg-on-hover"
         src={image}
         alt={title}
-        style={{ width: "100%", height: "200px" }}
+        style={{ width: "inherit", height: "inherit" }}
       />
       <MovieInfoContainer className="showmovieinfo-on-hover">
         <MovieTitleWrapper>

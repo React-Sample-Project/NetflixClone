@@ -26,7 +26,10 @@ function CollectionCarousel({ isLoading, genreName, movie, tv, genreId }) {
         )}
       </CardHeading>
       <CarouselContainer>
-        <CollectionSlider isLoading={isLoading} items={movie || tv} />
+        <CollectionSlider
+          isLoading={isLoading}
+          items={movie || tv}
+        />
       </CarouselContainer>
     </CarouselTitleCard>
   );

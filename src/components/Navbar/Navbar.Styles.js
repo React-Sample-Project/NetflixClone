@@ -67,7 +67,7 @@ export const LogoContainer = styled(Link)`
 
 export const LogoIcon = styled(NetflixLogo)`
   vertical-align: middle;
-  height: 2vh;
+  height: 1.8rem;
 `;
 
 export const LeftNav = styled.ul`

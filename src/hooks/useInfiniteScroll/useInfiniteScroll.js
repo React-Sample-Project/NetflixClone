@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { isBottom } from "../../utils";
 import useScroll from "../useScroll";
+import { useCallback } from "react";
 
 const useInfiniteScroll = ({ array, sliceLength, elementRef, type }) => {
   const [currentPage, setCurrentPage] = useState(0);
@@ -24,13 +25,12 @@ const useInfiniteScroll = ({ array, sliceLength, elementRef, type }) => {
       setSlicedArray(array.slice(startIndex, startIndex + sliceLength));
     }
   }, [currentPage, totalPages, array, sliceLength]);
-  // To do: Improvise
-  useScroll(() => {
-    // Total Pages added because when routes change currentPage is getting incremented. Since totalPages is always zero when not added in dependency arary. Included it.
+  const callback = useCallback(() => {
     if (totalPages > 0 && isBottom(elementRef)) {
       setCurrentPage((currentPageVal) => currentPageVal + 1);
     }
-  });
+  }, [totalPages, elementRef]);
+  useScroll(callback);
 
   return slicedArray;
 };

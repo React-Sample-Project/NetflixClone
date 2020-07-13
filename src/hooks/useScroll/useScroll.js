@@ -1,5 +1,4 @@
-import { useEffect } from "react";
-const throttle = require("lodash.throttle");
+import useWindow from "../useWindow/useWindow";
 
 let supportsPassive = false;
 try {
@@ -14,18 +13,11 @@ try {
 } catch (e) {}
 
 export default function useScroll(callback) {
-  useEffect(() => {
-    let handleScroll = throttle(callback, 200);
-    window.addEventListener(
-      "scroll",
-      handleScroll,
-      supportsPassive ? { passive: true } : false
-    );
-
-    return () => {
-      handleScroll.cancel();
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, [callback]);
-  // dep is added because initially when useRef is called the elementRef is null. To update its value adding it under dependency
+  useWindow(callback, {
+    eventName: "scroll",
+    eventProps: supportsPassive ? { passive: true } : false,
+    delayProps: {
+      type: "throttle",
+    },
+  });
 }
