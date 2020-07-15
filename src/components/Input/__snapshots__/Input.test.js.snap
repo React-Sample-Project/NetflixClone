@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing Input Component renders the component 1`] = `
+<input
+  class="sc-AxjAm hyNcgC"
+  type="password"
+/>
+`;

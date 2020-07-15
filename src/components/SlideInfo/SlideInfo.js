@@ -96,12 +96,12 @@ function SlideInfo({ title, image, id, ...otherProps }) {
     <CollectionSlideContainer onClick={onClick}>
       <Image
         onMouseEnter={onMouseEnter}
-        className="blurimg-on-hover"
+        className="h-blur"
         src={image}
         alt={title}
         style={{ width: "inherit", height: "inherit" }}
       />
-      <MovieInfoContainer className="showmovieinfo-on-hover">
+      <MovieInfoContainer className="h-visible">
         <MovieTitleWrapper>
           <MovieTitle>{title}</MovieTitle>
           <MetaWrapper>

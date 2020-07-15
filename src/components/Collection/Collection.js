@@ -63,7 +63,7 @@ function Collection({ fetchMethod, args, title, onResultsChange }) {
       </Header>
       {slicedCollection.map((collection) => (
         <CollectionSlider
-          className="collection-customization"
+          className="h-collectioncustomization"
           items={collection}
           isLoading={collection[collection.length - 1].isLoading}
           key={collection[0].id || collection[0].genreId}

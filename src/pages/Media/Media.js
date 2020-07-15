@@ -93,6 +93,7 @@ function Media() {
               <img
                 alt="backdrop_image"
                 style={{ width: "100%", height: "100%" }}
+                loading="lazy"
                 src={`${process.env.REACT_APP_IMAGE_BASE_URL}/${mediaData.backdrop_path}`}
               />
             </BackgroundCover>

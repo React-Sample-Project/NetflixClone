@@ -1,0 +1,202 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing Collection Component displays loading skeleton 1`] = `
+<div
+  style="padding-top: 1%; position: relative;"
+>
+  <div
+    class="sc-fzoLag jndESe"
+  >
+    <span
+      class="sc-fzoXzr jnpFzy"
+    />
+  </div>
+  <div
+    class="slick-slider slider__inner h-collectioncustomization slick-initialized"
+    dir="ltr"
+  >
+    <div
+      class="slick-list"
+      style="height: 0px;"
+    >
+      <div
+        class="slick-track"
+        style="opacity: 1; transform: translate3d(0px, 0px, 0px);"
+      >
+        <div
+          aria-hidden="true"
+          class="slick-slide slick-cloned"
+          data-index="-4"
+          style="width: 0px;"
+          tabindex="-1"
+        >
+          <div>
+            <div
+              class="sc-fzqNJr mClsx"
+            />
+          </div>
+        </div>
+        <div
+          aria-hidden="true"
+          class="slick-slide slick-cloned"
+          data-index="-3"
+          style="width: 0px;"
+          tabindex="-1"
+        >
+          <div>
+            <div
+              class="sc-fzqNJr mClsx"
+            />
+          </div>
+        </div>
+        <div
+          aria-hidden="true"
+          class="slick-slide slick-cloned"
+          data-index="-2"
+          style="width: 0px;"
+          tabindex="-1"
+        />
+        <div
+          aria-hidden="true"
+          class="slick-slide slick-cloned"
+          data-index="-1"
+          style="width: 0px;"
+          tabindex="-1"
+        />
+        <div
+          aria-hidden="false"
+          class="slick-slide slick-active slick-current"
+          data-index="0"
+          style="outline: none; width: 0px;"
+          tabindex="-1"
+        >
+          <div>
+            <div
+              class="sc-fzqNJr mClsx"
+            />
+          </div>
+        </div>
+        <div
+          aria-hidden="false"
+          class="slick-slide slick-active"
+          data-index="1"
+          style="outline: none; width: 0px;"
+          tabindex="-1"
+        >
+          <div>
+            <div
+              class="sc-fzqNJr mClsx"
+            />
+          </div>
+        </div>
+        <div
+          aria-hidden="false"
+          class="slick-slide slick-active"
+          data-index="2"
+          style="outline: none; width: 0px;"
+          tabindex="-1"
+        >
+          <div>
+            <div
+              class="sc-fzqNJr mClsx"
+            />
+          </div>
+        </div>
+        <div
+          aria-hidden="false"
+          class="slick-slide slick-active"
+          data-index="3"
+          style="outline: none; width: 0px;"
+          tabindex="-1"
+        >
+          <div>
+            <div
+              class="sc-fzqNJr mClsx"
+            />
+          </div>
+        </div>
+        <div
+          aria-hidden="true"
+          class="slick-slide"
+          data-index="4"
+          style="outline: none; width: 0px;"
+          tabindex="-1"
+        />
+        <div
+          aria-hidden="true"
+          class="slick-slide"
+          data-index="5"
+          style="outline: none; width: 0px;"
+          tabindex="-1"
+        />
+        <div
+          aria-hidden="true"
+          class="slick-slide slick-cloned"
+          data-index="6"
+          style="width: 0px;"
+          tabindex="-1"
+        >
+          <div>
+            <div
+              class="sc-fzqNJr mClsx"
+            />
+          </div>
+        </div>
+        <div
+          aria-hidden="true"
+          class="slick-slide slick-cloned"
+          data-index="7"
+          style="width: 0px;"
+          tabindex="-1"
+        >
+          <div>
+            <div
+              class="sc-fzqNJr mClsx"
+            />
+          </div>
+        </div>
+        <div
+          aria-hidden="true"
+          class="slick-slide slick-cloned"
+          data-index="8"
+          style="width: 0px;"
+          tabindex="-1"
+        >
+          <div>
+            <div
+              class="sc-fzqNJr mClsx"
+            />
+          </div>
+        </div>
+        <div
+          aria-hidden="true"
+          class="slick-slide slick-cloned"
+          data-index="9"
+          style="width: 0px;"
+          tabindex="-1"
+        >
+          <div>
+            <div
+              class="sc-fzqNJr mClsx"
+            />
+          </div>
+        </div>
+        <div
+          aria-hidden="true"
+          class="slick-slide slick-cloned"
+          data-index="10"
+          style="width: 0px;"
+          tabindex="-1"
+        />
+        <div
+          aria-hidden="true"
+          class="slick-slide slick-cloned"
+          data-index="11"
+          style="width: 0px;"
+          tabindex="-1"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;

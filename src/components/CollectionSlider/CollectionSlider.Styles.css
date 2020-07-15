@@ -31,12 +31,12 @@
    transform: scale(1.5);
 }
 
-.slider__inner .slick-slide:hover .showmovieinfo-on-hover {
+.slider__inner .slick-slide:hover .h-visible {
     /* transition: opacity .62s,1s ease; */
     opacity: 1;
     visibility: visible;
 }
-.slick-slide:hover .blurimg-on-hover {
+.slick-slide:hover .h-blur {
     opacity: 0.7;
 }
 
